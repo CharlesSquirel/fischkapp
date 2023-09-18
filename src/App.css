@@ -1,3 +1,9 @@
+:root {
+  --white: #fff;
+  --black: #161616;
+  --bg: #373737;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,5 +11,14 @@
 }
 
 body {
-  background: #373737;
+  font-family: 'Lexend', sans-serif;
+  background: var(--bg);
+}
+
+button {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
 }
