@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import styles from "./AppLayout.module.css";
+import styles from "./AppLayout.module.scss";
 
 type AppLayoutProps = {
   children: ReactNode;

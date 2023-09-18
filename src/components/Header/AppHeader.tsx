@@ -1,4 +1,4 @@
-import styles from "./styles/AppHeader.module.css";
+import styles from "./styles/AppHeader.module.scss";
 import AddButton from "./AddButton";
 import CardsCounter from "./CardsCounter";
 import Logo from "./Logo";

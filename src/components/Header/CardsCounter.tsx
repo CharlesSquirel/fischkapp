@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles/AppHeader.module.css";
+import styles from "./styles/AppHeader.module.scss";
 
 interface ICardsCounter {
   count: string;
