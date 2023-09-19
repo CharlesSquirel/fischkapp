@@ -1,10 +1,12 @@
-import React from 'react'
+import React from "react";
 import styles from "../Buttons.module.scss";
 
-const ButtonLight:React.FC = () => {
-  return (
-    <div>ButtonLight</div>
-  )
+interface IButtonLight {
+  text: string;
 }
 
-export default ButtonLight
+const ButtonLight: React.FC<IButtonLight> = ({ text }) => {
+  return <button className={styles.btnLight}>{text}</button>;
+};
+
+export default ButtonLight;

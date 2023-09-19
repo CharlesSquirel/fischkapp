@@ -1,14 +1,12 @@
-import React from 'react'
+import React from "react";
 import styles from "../Buttons.module.scss";
 
 interface IButtonDark {
-  text: string,
+  text: string;
 }
 
-const ButtonDark:React.FC<IButtonDark> = ({text}) => {
-  return (
-    <div className={styles.btnDark}>{text}</div>
-  )
-}
+const ButtonDark: React.FC<IButtonDark> = ({ text }) => {
+  return <button className={styles.btnDark}>{text}</button>;
+};
 
-export default ButtonDark
+export default ButtonDark;
