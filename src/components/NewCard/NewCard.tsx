@@ -5,10 +5,13 @@ import BackNewCard from "./BackNewCard";
 
 const NewCard: React.FC = () => {
   const [isCardReversed, setIsCardReversed] = useState(false)
+  const handleReverseCard = () => {
+    setIsCardReversed(!isCardReversed)
+  }
   return (
     <div className={styles.cardContainerMain}>
-      <FrontNewCard />
-      {isCardReversed && <BackNewCard />}
+      {!isCardReversed && <FrontNewCard handleReverseCard = {handleReverseCard}/>}
+      {isCardReversed && <BackNewCard handleReverseCard = {handleReverseCard}/>}
     </div>
   );
 };
