@@ -1,13 +1,12 @@
 .inputCard {
   width: 315px;
-  min-height: 40px;
-  height: auto;
-  padding-left: 12px;
+  height: 40px;
+  padding: 10px 0 0 12px;
   font-size: 16px;
   font-weight: 500;
   border: 1px solid var(--gray);
-  word-wrap: break-word;
-  overflow-y: auto;
+  resize: none;
+  overflow-y: hidden;
   &:focus {
     outline: 0;
   }
