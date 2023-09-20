@@ -1,15 +1,15 @@
 import { AppHeader } from "./components/Header/AppHeader";
 import { AppLayout } from "./components/AppLayout";
-import "./App.scss";
+import "./styles/App.scss";
 import CardList from "./components/common/CardList/CardList";
-import NewCard from "./components/NewCard/NewCard";
+import Card from "./components/Card/Card";
 
 function App() {
   return (
     <AppLayout>
       <AppHeader />
       <CardList>
-        <NewCard />
+        <Card />
       </CardList>
     </AppLayout>
   );

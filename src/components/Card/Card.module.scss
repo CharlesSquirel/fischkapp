@@ -1,0 +1,7 @@
+@import "../../styles/mixins.scss";
+
+.cardContainer {
+  @include cardMixin;
+  position: relative;
+  justify-content: center;
+}

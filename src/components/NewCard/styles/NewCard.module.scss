@@ -1,21 +1,9 @@
-.cardContainerMain {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@import "../../../styles/mixins.scss";
 
 .cardFrontContainer,
 .cardBackContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 46px;
-  width: 343px;
-  min-height: 188px;
+  @include cardMixin;
   padding: 50px 14px 14px 14px;
-  background-color: var(--white);
-  border-radius: 15px;
-  border: 1px solid var(--gray);
 }
 
 .cardBackContainer {
