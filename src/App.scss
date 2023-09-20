@@ -2,6 +2,7 @@
   --white: #fff;
   --black: #161616;
   --bg: #373737;
+  --gray: #ebebeb;
 }
 
 * {
@@ -16,10 +17,14 @@ body {
   color: var(--black);
 }
 
-button {
-  border: none;
+button,
+input {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   cursor: pointer;
+}
+
+button {
+  border: none;
 }

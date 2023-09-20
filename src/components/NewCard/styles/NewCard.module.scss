@@ -1,0 +1,40 @@
+.cardContainerMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardFrontContainer,
+.cardBackContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 46px;
+  width: 343px;
+  min-height: 188px;
+  padding: 50px 14px 14px 14px;
+  background-color: var(--white);
+  border-radius: 15px;
+  border: 1px solid var(--gray);
+}
+
+.cardBackContainer {
+  position: relative;
+}
+
+.btnBox {
+  display: flex;
+  align-self: flex-end;
+  gap: 7px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 400;
+}

@@ -1,0 +1,13 @@
+.inputCard {
+  width: 315px;
+  height: 40px;
+  padding: 10px 0 0 12px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid var(--gray);
+  resize: none;
+  overflow-y: hidden;
+  &:focus {
+    outline: 0;
+  }
+}
