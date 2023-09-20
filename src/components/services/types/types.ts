@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IButton {
   text: string;
   handleReverseCard?: () => void;
@@ -6,3 +8,7 @@ export interface IButton {
 export interface INewCard {
   handleReverseCard: () => void;
 }
+
+export type PropsWithChildren = {
+  children: ReactNode;
+};

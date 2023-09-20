@@ -1,8 +1,4 @@
-import { ReactNode } from "react";
 import styles from "./AppLayout.module.scss";
+import { PropsWithChildren } from "./services/types/types";
 
-type AppLayoutProps = {
-  children: ReactNode;
-};
-
-export const AppLayout = ({ children }: AppLayoutProps) => <div className={styles.layout}>{children}</div>;
+export const AppLayout = ({ children }: PropsWithChildren) => <div className={styles.layout}>{children}</div>;
