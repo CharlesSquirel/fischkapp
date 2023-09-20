@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 export interface IButton {
   text: string;
   handleReverseCard?: () => void;
+  handleCancel?: () => void;
+  switchEditCard?: () => void;
 }
 
 export interface INewCard {

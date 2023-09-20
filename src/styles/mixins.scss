@@ -5,8 +5,13 @@
   gap: 46px;
   width: 343px;
   min-height: 188px;
-
   background-color: var(--white);
   border-radius: 15px;
   border: 1px solid var(--gray);
+}
+
+@mixin cardButtonBox {
+  display: flex;
+  align-self: flex-end;
+  gap: 7px;
 }

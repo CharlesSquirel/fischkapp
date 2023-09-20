@@ -11,9 +11,7 @@
 }
 
 .btnBox {
-  display: flex;
-  align-self: flex-end;
-  gap: 7px;
+  @include cardButtonBox;
 }
 
 .inputBox {

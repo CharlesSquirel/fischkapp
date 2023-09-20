@@ -1,7 +1,16 @@
 @import "../../styles/mixins.scss";
 
-.cardContainer {
+.cardContainer,
+.cardEditContainer {
   @include cardMixin;
   position: relative;
   justify-content: center;
+}
+
+.btnBox {
+  @include cardButtonBox;
+}
+
+.cardEditContainer {
+  padding: 50px 14px 14px 14px;
 }
