@@ -4,12 +4,9 @@ import ButtonLight from "../common/Buttons/ButtonLight/ButtonLight";
 import ButtonDark from "../common/Buttons/ButtonDark/ButtonDark";
 import InputCard from "../common/InputCard/InputCard";
 import ButtonDelete from "../common/ButtonsIcon/ButtonDelete/ButtonDelete";
+import { INewCard } from "../services/types/types";
 
-interface IBackNewCard {
-  handleReverseCard: () => void;
-}
-
-const BackNewCard: React.FC<IBackNewCard> = ({handleReverseCard}) => {
+const BackNewCard: React.FC<INewCard> = ({ handleReverseCard }) => {
   return (
     <article className={styles.cardBackContainer}>
       <div className={styles.inputBox}>
@@ -17,7 +14,7 @@ const BackNewCard: React.FC<IBackNewCard> = ({handleReverseCard}) => {
         <InputCard />
       </div>
       <div className={styles.btnBox}>
-        <ButtonLight text="back" handleReverseCard={handleReverseCard}/>
+        <ButtonLight text="back" handleReverseCard={handleReverseCard} />
         <ButtonDark text="save" />
       </div>
       <ButtonDelete />

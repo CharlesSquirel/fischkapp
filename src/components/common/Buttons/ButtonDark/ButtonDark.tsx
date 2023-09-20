@@ -1,12 +1,8 @@
 import React from "react";
 import styles from "../Buttons.module.scss";
+import { IButton } from "../../../services/types/types";
 
-interface IButtonDark {
-  text: string;
-  handleReverseCard?: () => void;
-}
-
-const ButtonDark: React.FC<IButtonDark> = ({ text, handleReverseCard }) => {
+const ButtonDark: React.FC<IButton> = ({ text, handleReverseCard }) => {
   return (
     <button className={styles.btnDark} onClick={handleReverseCard}>
       {text}
