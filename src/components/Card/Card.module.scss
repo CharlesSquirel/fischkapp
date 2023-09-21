@@ -1,0 +1,12 @@
+@import "../../styles/mixins.scss";
+
+.cardContainer {
+  @include cardContainer;
+  position: relative;
+  justify-content: center;
+}
+
+.cardText {
+    font-size: 16px;
+    font-weight: 500; 
+}

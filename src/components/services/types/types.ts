@@ -12,3 +12,7 @@ export interface INewCard {
 export type PropsWithChildren = {
   children: ReactNode;
 };
+
+export interface IButtonIcon {
+  handleSwitchEdit: () => void
+}
