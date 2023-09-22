@@ -4,11 +4,12 @@ import { Context } from "../../../App";
 
 interface IInputCard {
   type?: "front" | "back";
+  content?: string;
 }
 
-const InputCard: React.FC<IInputCard> = ({ type }) => {
+const InputCard: React.FC<IInputCard> = ({ type, content }) => {
   const context = useContext(Context);
-  const { newCardTexts, setNewCardTexts } = context;
+  const { newCardTexts, setNewCardTexts, cardTextsToEdit, setCardTextsToEdit } = context;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const adjustTextareaHeight = (): void => {
@@ -33,16 +34,7 @@ const InputCard: React.FC<IInputCard> = ({ type }) => {
     }
   };
 
-  return (
-    <textarea
-      id="text"
-      className={styles.inputCard}
-      ref={textareaRef}
-      onInput={adjustTextareaHeight}
-      onChange={handleInputChange}
-      value={type === "front" ? newCardTexts.frontText : newCardTexts.backText}
-    ></textarea>
-  );
+  return <textarea id="text" className={styles.inputCard} ref={textareaRef} onInput={adjustTextareaHeight} onChange={handleInputChange} value={content}></textarea>;
 };
 
 export default InputCard;

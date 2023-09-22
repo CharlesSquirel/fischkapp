@@ -24,7 +24,7 @@ export interface CardTextsProps {
   backText: string;
 }
 
-export const initialNewCardText: CardTextsProps = {
-  frontText: "",
-  backText: "",
+export const initialCardText: CardTextsProps = {
+  frontText: "front text",
+  backText: "back text",
 };
