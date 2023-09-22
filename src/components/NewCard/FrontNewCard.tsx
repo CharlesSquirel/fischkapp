@@ -13,7 +13,7 @@ const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   };
   return (
     <article className={styles.cardFrontContainer}>
-      <InputCard />
+      <InputCard type="front" />
       <div className={globalStyles.btnBox}>
         <button className={globalStyles.btnLight} onClick={handleCancel}>
           Cancel

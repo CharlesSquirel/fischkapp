@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./styles/NewCard.module.scss";
 import FrontNewCard from "./FrontNewCard";
 import BackNewCard from "./BackNewCard";
 
 const NewCard: React.FC = () => {
   const [isCardFlipped, setIsCardFlipped] = useState(false);
+
   const handleFlip = () => {
     setIsCardFlipped(!isCardFlipped);
   };

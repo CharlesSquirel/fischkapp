@@ -12,7 +12,7 @@ interface ICardEdit {
 const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, content }) => {
   return (
     <article className={styles.cardContainer}>
-      <InputCard value={content} />
+      <InputCard />
       <div className={globalStyles.btnBox}>
         <button className={globalStyles.btnLight}>Cancel</button>
         <button className={globalStyles.btnDark}>Save</button>
