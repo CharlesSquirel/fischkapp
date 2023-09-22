@@ -1,7 +1,11 @@
 import React, { useRef } from "react";
 import styles from "./InputCard.module.scss";
 
-const InputCard: React.FC = () => {
+interface IInputCard {
+  value?: string;
+}
+
+const InputCard: React.FC<IInputCard> = ({ value }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const adjustTextareaHeight = (): void => {
     if (textareaRef.current) {
@@ -10,7 +14,7 @@ const InputCard: React.FC = () => {
     }
   };
 
-  return <textarea className={styles.inputCard} ref={textareaRef} onInput={adjustTextareaHeight}></textarea>;
+  return <textarea className={styles.inputCard} ref={textareaRef} onInput={adjustTextareaHeight} value={value}></textarea>;
 };
 
 export default InputCard;
