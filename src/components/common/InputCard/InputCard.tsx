@@ -14,7 +14,7 @@ const InputCard: React.FC<IInputCard> = ({ value }) => {
     }
   };
 
-  return <textarea className={styles.inputCard} ref={textareaRef} onInput={adjustTextareaHeight} value={value}></textarea>;
+  return <textarea id="text" className={styles.inputCard} ref={textareaRef} onInput={adjustTextareaHeight} value={value}></textarea>;
 };
 
 export default InputCard;

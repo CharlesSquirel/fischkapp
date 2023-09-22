@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./styles/NewCard.module.scss";
+import globalStyles from "../../styles/GlobalClaasses.module.scss";
 import InputCard from "../common/InputCard/InputCard";
-import ButtonLight from "../common/Buttons/ButtonLight/ButtonLight";
-import ButtonDark from "../common/Buttons/ButtonDark/ButtonDark";
 import { INewCard } from "../services/types/types";
+import { Context } from "../../App";
 
-const FrontNewCard: React.FC<INewCard> = ({ handleReverseCard }) => {
+const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
+  const context = useContext(Context);
+  const { isNewCardshowed, setIsNewCardShowed } = context;
+  const handleCancel = () => {
+    setIsNewCardShowed(!isNewCardshowed);
+  };
   return (
     <article className={styles.cardFrontContainer}>
       <InputCard />
-      <div className={styles.btnBox}>
-        <ButtonLight text="cancel" />
-        <ButtonDark text="next" handleReverseCard={handleReverseCard} />
+      <div className={globalStyles.btnBox}>
+        <button className={globalStyles.btnLight} onClick={handleCancel}>
+          Cancel
+        </button>
+        <button className={globalStyles.btnDark} onClick={handleFlip}>
+          Next
+        </button>
       </div>
     </article>
   );

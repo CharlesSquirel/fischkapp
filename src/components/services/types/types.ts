@@ -4,10 +4,11 @@ export interface IButton {
   text: string;
   handleReverseCard?: () => void;
   handleSwitchEdit?: () => void;
+  cancelAdding?: () => void;
 }
 
 export interface INewCard {
-  handleReverseCard: () => void;
+  handleFlip?: () => void;
 }
 
 export type PropsWithChildren = {
