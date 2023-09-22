@@ -2,10 +2,10 @@ import React, { useRef } from "react";
 import styles from "./InputCard.module.scss";
 
 interface IInputCard {
-  value: string
+  value?: string;
 }
 
-const InputCard: React.FC<IInputCard> = ({value}) => {
+const InputCard: React.FC<IInputCard> = ({ value }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const adjustTextareaHeight = (): void => {
     if (textareaRef.current) {

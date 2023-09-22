@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Card.module.scss";
 import ButtonEdit from "../common/ButtonsIcon/ButtonEdit/ButtonEdit";
 import CardEdit from "./CardEdit";
@@ -22,7 +22,7 @@ const CardSide: React.FC<ICard> = ({ type }) => {
   const handleSwitchEdit = () => {
     setIsEditing(!isEditing);
   };
-  
+
   return (
     <>
       {isEditing ? (
@@ -30,6 +30,7 @@ const CardSide: React.FC<ICard> = ({ type }) => {
       ) : (
         <article className={styles.cardContainer}>
           <p className={styles.cardText}>{type === "front" ? content.front : content.back}</p>
+
           <ButtonEdit handleSwitchEdit={handleSwitchEdit} />
         </article>
       )}

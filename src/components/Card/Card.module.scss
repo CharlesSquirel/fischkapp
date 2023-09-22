@@ -4,9 +4,14 @@
   @include cardContainer;
   position: relative;
   justify-content: center;
+  padding: 50px 14px 14px 14px;
 }
 
 .cardText {
-    font-size: 16px;
-    font-weight: 500; 
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btnBox {
+  @include btnBox;
 }

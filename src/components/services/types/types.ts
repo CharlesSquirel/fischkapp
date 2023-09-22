@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface IButton {
   text: string;
   handleReverseCard?: () => void;
+  handleSwitchEdit?: () => void;
 }
 
 export interface INewCard {
@@ -14,5 +15,5 @@ export type PropsWithChildren = {
 };
 
 export interface IButtonIcon {
-  handleSwitchEdit: () => void
+  handleSwitchEdit?: () => void;
 }
