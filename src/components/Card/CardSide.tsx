@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useRef } from "react";
 import styles from "./Card.module.scss";
+import globalStyles from "../../styles/GlobalClaasses.module.scss";
 import ButtonEdit from "../common/ButtonsIcon/ButtonEdit/ButtonEdit";
 import CardEdit from "./CardEdit";
+import { Context } from "../../App";
 
 interface ICard {
   type: string;
+  isEditing: boolean;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface ContentProps {
-  front: string;
-  back: string;
-}
-
-const CardSide: React.FC<ICard> = ({ type }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [content, setContent] = useState<ContentProps>({
-    front: "front text",
-    back: "back text",
-  });
+const CardSide: React.FC<ICard> = ({ type, isEditing, setIsEditing }) => {
+  const context = useContext(Context);
+  const { cardTextsToEdit, setCardTextsToEdit } = context;
   const isType = (typeToCheck: string) => typeToCheck === type;
   const handleSwitchEdit = () => {
     setIsEditing(!isEditing);
@@ -26,11 +22,13 @@ const CardSide: React.FC<ICard> = ({ type }) => {
   return (
     <>
       {isEditing ? (
-        <CardEdit handleSwitchEdit={handleSwitchEdit} content={type === "front" ? content.front : content.back} />
+        <CardEdit handleSwitchEdit={handleSwitchEdit} type={type} />
       ) : (
         <article className={styles.cardContainer}>
-          <p className={styles.cardText}>{type === "front" ? content.front : content.back}</p>
-          <ButtonEdit handleSwitchEdit={handleSwitchEdit} />
+          <p className={styles.cardText}>{type === "front" ? cardTextsToEdit.frontText : cardTextsToEdit.backText}</p>
+          <button className={globalStyles.btnIcon} onClick={handleSwitchEdit}>
+            <ButtonEdit />
+          </button>
         </article>
       )}
     </>
