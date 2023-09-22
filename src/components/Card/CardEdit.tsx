@@ -12,9 +12,12 @@ interface ICardEdit {
 
 const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type }) => {
   const context = useContext(Context);
-  const { cardTextsToEdit, setCardTextsToEdit } = context;
+  const { cardTextsToEdit, setCardTextsToEdit, setIsCardShowed } = context;
   const handleSave = () => {
     console.log(cardTextsToEdit);
+  };
+  const handleDelete = () => {
+    setIsCardShowed(false);
   };
   return (
     <article className={styles.cardContainer}>
@@ -27,7 +30,7 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type }) => {
           Save
         </button>
       </div>
-      <div className={globalStyles.btnIcon}>
+      <div className={globalStyles.btnIcon} onClick={handleDelete}>
         <ButtonDelete />
       </div>
     </article>

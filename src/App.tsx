@@ -16,6 +16,8 @@ export const Context = React.createContext<{
   setNewCardTexts: ObjectFunctionProps;
   cardTextsToEdit: CardTextsProps;
   setCardTextsToEdit: ObjectFunctionProps;
+  isCardShowed: boolean;
+  setIsCardShowed: StateFunctionProps;
 }>({
   isNewCardshowed: false,
   setIsNewCardShowed: () => {},
@@ -23,20 +25,23 @@ export const Context = React.createContext<{
   setNewCardTexts: () => {},
   cardTextsToEdit: initialCardText,
   setCardTextsToEdit: () => {},
+  isCardShowed: true,
+  setIsCardShowed: () => {},
 });
 
 function App() {
   const [isNewCardshowed, setIsNewCardShowed] = useState(false);
   const [newCardTexts, setNewCardTexts] = useState<CardTextsProps>(initialCardText);
   const [cardTextsToEdit, setCardTextsToEdit] = useState<CardTextsProps>(initialCardText);
+  const [isCardShowed, setIsCardShowed] = useState(true);
 
   return (
-    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, cardTextsToEdit, setCardTextsToEdit }}>
+    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, cardTextsToEdit, setCardTextsToEdit, isCardShowed, setIsCardShowed }}>
       <AppLayout>
         <AppHeader />
         <CardList>
           {isNewCardshowed && <NewCard />}
-          <Card />
+          {isCardShowed && <Card />}
         </CardList>
       </AppLayout>
     </Context.Provider>
