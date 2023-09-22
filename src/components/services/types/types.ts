@@ -4,10 +4,11 @@ export interface IButton {
   text: string;
   handleReverseCard?: () => void;
   handleSwitchEdit?: () => void;
+  cancelAdding?: () => void;
 }
 
 export interface INewCard {
-  handleReverseCard: () => void;
+  handleFlip?: () => void;
 }
 
 export type PropsWithChildren = {
@@ -17,3 +18,13 @@ export type PropsWithChildren = {
 export interface IButtonIcon {
   handleSwitchEdit?: () => void;
 }
+
+export interface CardTextsProps {
+  frontText: string;
+  backText: string;
+}
+
+export const initialNewCardText: CardTextsProps = {
+  frontText: "",
+  backText: "",
+};

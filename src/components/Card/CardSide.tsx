@@ -30,7 +30,6 @@ const CardSide: React.FC<ICard> = ({ type }) => {
       ) : (
         <article className={styles.cardContainer}>
           <p className={styles.cardText}>{type === "front" ? content.front : content.back}</p>
-
           <ButtonEdit handleSwitchEdit={handleSwitchEdit} />
         </article>
       )}

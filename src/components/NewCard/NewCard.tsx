@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./styles/NewCard.module.scss";
 import FrontNewCard from "./FrontNewCard";
 import BackNewCard from "./BackNewCard";
 
 const NewCard: React.FC = () => {
-  const [isCardReversed, setIsCardReversed] = useState(false)
-  const handleReverseCard = () => {
-    setIsCardReversed(!isCardReversed)
-  }
+  const [isCardFlipped, setIsCardFlipped] = useState(false);
+
+  const handleFlip = () => {
+    setIsCardFlipped(!isCardFlipped);
+  };
+
   return (
     <div className={styles.cardContainerMain}>
-      {!isCardReversed && <FrontNewCard handleReverseCard = {handleReverseCard}/>}
-      {isCardReversed && <BackNewCard handleReverseCard = {handleReverseCard}/>}
+      {!isCardFlipped && <FrontNewCard handleFlip={handleFlip} />}
+      {isCardFlipped && <BackNewCard handleFlip={handleFlip} />}
     </div>
   );
 };

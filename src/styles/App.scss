@@ -1,3 +1,5 @@
+// @import "_globals";
+
 :root {
   --white: #fff;
   --black: #161616;
@@ -18,7 +20,8 @@ body {
 }
 
 button,
-input, textarea {
+input,
+textarea {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
