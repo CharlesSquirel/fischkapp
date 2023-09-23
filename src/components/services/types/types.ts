@@ -28,3 +28,22 @@ export const initialCardText: CardTextsProps = {
   front: "front text",
   back: "back text",
 };
+
+export interface ICard {
+  card: CardTextsProps;
+}
+
+export interface ICardEdit {
+  handleSwitchEdit: () => void;
+  type: string;
+}
+
+export interface ICardSide {
+  type: string;
+  isEditing: boolean;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  card: CardTextsProps;
+}
+
+export type StateFunctionProps = React.Dispatch<React.SetStateAction<boolean>>;
+export type ObjectFunctionProps = React.Dispatch<React.SetStateAction<CardTextsProps>>;

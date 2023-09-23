@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import styles from "./Card.module.scss";
 import CardSide from "./CardSide";
+import { ICard } from "../services/types/types";
+import { CardTypes } from "../services/api/api";
 
-type ICardType = "front" | "back";
-
-const Card: React.FC = () => {
-  const [type, setType] = useState<ICardType>("front");
+const Card: React.FC<ICard> = ({ card }) => {
+  const [type, setType] = useState(CardTypes.frontType);
   const [isEditing, setIsEditing] = useState(false);
+
   const handleCardRevert = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (isEditing || (e.target as HTMLElement).classList.contains("btnIcon")) return;
-    setType(type === "front" ? "back" : "front");
+    setType(type === CardTypes.frontType ? CardTypes.backType : CardTypes.frontType);
   };
+
   return (
     <div onClick={handleCardRevert}>
-      <CardSide type={type} isEditing={isEditing} setIsEditing={setIsEditing} />
+      <CardSide type={type} isEditing={isEditing} setIsEditing={setIsEditing} card={card} />
     </div>
   );
 };

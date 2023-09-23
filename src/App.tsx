@@ -2,13 +2,12 @@ import { AppHeader } from "./components/Header/AppHeader";
 import { AppLayout } from "./components/AppLayout";
 import "./styles/App.scss";
 import CardList from "./components/common/CardList/CardList";
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import NewCard from "./components/NewCard/NewCard";
-import { CardTextsProps, initialCardText } from "./components/services/types/types";
+import { CardTextsProps, ObjectFunctionProps, StateFunctionProps, initialCardText } from "./components/services/types/types";
 import Card from "./components/Card/Card";
+import { getCards } from "./components/services/api/api";
 
-type StateFunctionProps = React.Dispatch<React.SetStateAction<boolean>>;
-type ObjectFunctionProps = React.Dispatch<React.SetStateAction<CardTextsProps>>;
 export const Context = React.createContext<{
   isNewCardshowed: boolean;
   setIsNewCardShowed: StateFunctionProps;
@@ -40,16 +39,11 @@ function App() {
   const [isCardShowed, setIsCardShowed] = useState(false);
   const [flashCards, setFlashCards] = useState([]);
 
-  const fetchProducts = async () => {
-    const res = await fetch("https://training.nerdbord.io/api/v1/fischkapp/flashcards");
-    const data = await res.json();
-    setFlashCards(data);
-  };
   useEffect(() => {
     (async () => {
-      await fetchProducts();
+      await getCards(setFlashCards);
+      console.log(flashCards);
     })();
-    console.log(flashCards);
   }, []);
 
   return (
@@ -58,7 +52,9 @@ function App() {
         <AppHeader />
         <CardList>
           {isNewCardshowed && <NewCard />}
-          {isCardShowed && <Card />}
+          {flashCards.map((card, index: number): ReactNode => {
+            return <Card key={index} card={card} />;
+          })}
         </CardList>
       </AppLayout>
     </Context.Provider>
