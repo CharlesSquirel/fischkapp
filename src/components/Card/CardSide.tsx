@@ -4,23 +4,18 @@ import globalStyles from "../../styles/GlobalClaasses.module.scss";
 import ButtonEdit from "../common/ButtonsIcon/ButtonEdit/ButtonEdit";
 import CardEdit from "./CardEdit";
 import { Context } from "../../App";
-import { CardTextsProps } from "../services/types/types";
-
-interface ICardSide {
-  type: string;
-  isEditing: boolean;
-  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
-  card: CardTextsProps;
-}
+import { ICardSide } from "../services/types/types";
 
 const CardSide: React.FC<ICardSide> = ({ type, isEditing, setIsEditing, card }) => {
-  const { front, back } = card;
   const context = useContext(Context);
   const { cardTextsToEdit, setCardTextsToEdit } = context;
-  const isType = (typeToCheck: string) => typeToCheck === type;
+
   const handleSwitchEdit = () => {
     setIsEditing(!isEditing);
   };
+
+  const isType = (typeToCheck: string) => typeToCheck === type;
+  const { front, back } = card;
 
   return (
     <>

@@ -33,3 +33,8 @@ export const getCards = async (settingFunction: React.Dispatch<React.SetStateAct
   console.log(data);
   settingFunction(data ? data : null);
 };
+
+export enum CardTypes {
+  frontType = "front",
+  backType = "back",
+}
