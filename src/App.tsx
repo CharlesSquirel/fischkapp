@@ -13,8 +13,6 @@ export const Context = React.createContext<{
   setIsNewCardShowed: StateFunctionProps;
   newCardTexts: CardTextsProps;
   setNewCardTexts: ObjectFunctionProps;
-  isCardShowed: boolean;
-  setIsCardShowed: StateFunctionProps;
   flashCards: object;
   setFlashCards: React.Dispatch<React.SetStateAction<any>>;
 }>({
@@ -22,8 +20,6 @@ export const Context = React.createContext<{
   setIsNewCardShowed: () => {},
   newCardTexts: initialCardText,
   setNewCardTexts: () => {},
-  isCardShowed: true,
-  setIsCardShowed: () => {},
   flashCards: [],
   setFlashCards: () => {},
 });
@@ -31,7 +27,6 @@ export const Context = React.createContext<{
 function App() {
   const [isNewCardshowed, setIsNewCardShowed] = useState(false);
   const [newCardTexts, setNewCardTexts] = useState<CardTextsProps>(initialCardText);
-  const [isCardShowed, setIsCardShowed] = useState(false);
   const [flashCards, setFlashCards] = useState([]);
 
   useEffect(() => {
@@ -39,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, isCardShowed, setIsCardShowed, flashCards, setFlashCards }}>
+    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards }}>
       <AppLayout>
         <AppHeader />
         <CardList>

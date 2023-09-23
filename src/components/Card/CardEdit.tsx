@@ -5,11 +5,11 @@ import InputCard from "../common/InputCard/InputCard";
 import globalStyles from "../../styles/GlobalClaasses.module.scss";
 import { Context } from "../../App";
 import { CardTextsProps, ICardEdit } from "../services/types/types";
-import { getCards, updateCard } from "../services/api/api";
+import { deleteCard, getCards, updateCard } from "../services/api/api";
 
 const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   const context = useContext(Context);
-  const { setIsCardShowed, setFlashCards } = context;
+  const { setFlashCards } = context;
 
   const [textToEdit, setTextToEdit] = useState<CardTextsProps>({
     front: card?.front || "",
@@ -23,7 +23,9 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   };
 
   const handleDelete = () => {
-    setIsCardShowed(false);
+    deleteCard(card);
+    handleSwitchEdit();
+    getCards(setFlashCards);
   };
 
   return (
