@@ -21,7 +21,7 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type }) => {
   };
   return (
     <article className={styles.cardContainer}>
-      <InputCard content={type === "front" ? cardTextsToEdit.frontText : cardTextsToEdit.backText} />
+      <InputCard content={type === "front" ? cardTextsToEdit.front : cardTextsToEdit.back} />
       <div className={globalStyles.btnBox}>
         <button className={globalStyles.btnLight} onClick={handleSwitchEdit}>
           Cancel

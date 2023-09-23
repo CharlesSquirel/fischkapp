@@ -28,3 +28,6 @@ export const initialCardText: CardTextsProps = {
   front: "front text",
   back: "back text",
 };
+
+export type StateFunctionProps = React.Dispatch<React.SetStateAction<boolean>>;
+export type ObjectFunctionProps = React.Dispatch<React.SetStateAction<CardTextsProps>>;
