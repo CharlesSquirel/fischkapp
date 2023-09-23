@@ -5,6 +5,7 @@ import InputCard from "../common/InputCard/InputCard";
 import ButtonDelete from "../common/ButtonsIcon/ButtonDelete/ButtonDelete";
 import { INewCard } from "../services/types/types";
 import { Context } from "../../App";
+import { addCard } from "../services/api/api";
 
 const BackNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   const context = useContext(Context);
@@ -12,13 +13,14 @@ const BackNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   const handleDelete = () => {
     setIsNewCardShowed(!isNewCardshowed);
   };
+
   const handleSave = () => {
-    console.log(newCardTexts);
+    addCard(newCardTexts);
   };
   return (
     <article className={styles.cardBackContainer}>
       <div className={styles.inputBox}>
-        <p className={styles.text}>Il pesce</p>
+        <p className={styles.text}>{newCardTexts.front}</p>
         <InputCard type="back" />
       </div>
       <div className={globalStyles.btnBox}>

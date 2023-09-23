@@ -24,12 +24,12 @@ const InputCard: React.FC<IInputCard> = ({ type, content }) => {
     if (type === "front") {
       setNewCardTexts({
         ...newCardTexts,
-        frontText: value,
+        front: value,
       });
     } else {
       setNewCardTexts({
         ...newCardTexts,
-        backText: value,
+        back: value,
       });
     }
   };

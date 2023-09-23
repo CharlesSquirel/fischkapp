@@ -20,11 +20,11 @@ export interface IButtonIcon {
 }
 
 export interface CardTextsProps {
-  frontText: string;
-  backText: string;
+  front: string;
+  back: string;
 }
 
 export const initialCardText: CardTextsProps = {
-  frontText: "front text",
-  backText: "back text",
+  front: "front text",
+  back: "back text",
 };
