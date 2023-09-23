@@ -1,17 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Card.module.scss";
 import ButtonDelete from "../common/ButtonsIcon/ButtonDelete/ButtonDelete";
 import InputCard from "../common/InputCard/InputCard";
 import globalStyles from "../../styles/GlobalClaasses.module.scss";
 import { Context } from "../../App";
-import { ICardEdit } from "../services/types/types";
+import { CardTextsProps, ICardEdit } from "../services/types/types";
+import { getCards, updateCard } from "../services/api/api";
 
-const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type }) => {
+const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   const context = useContext(Context);
-  const { cardTextsToEdit, setCardTextsToEdit, setIsCardShowed } = context;
+  const { setIsCardShowed, setFlashCards } = context;
+
+  const [textToEdit, setTextToEdit] = useState<CardTextsProps>({
+    front: card?.front || "",
+    back: card?.back || "",
+  });
 
   const handleSave = () => {
-    console.log(cardTextsToEdit);
+    updateCard(card, textToEdit);
+    handleSwitchEdit();
+    getCards(setFlashCards);
   };
 
   const handleDelete = () => {
@@ -20,7 +28,7 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type }) => {
 
   return (
     <article className={styles.cardContainer}>
-      <InputCard content={type === "front" ? cardTextsToEdit.front : cardTextsToEdit.back} />
+      <InputCard textToEdit={textToEdit} setTextToEdit={setTextToEdit} type={type} />
       <div className={globalStyles.btnBox}>
         <button className={globalStyles.btnLight} onClick={handleSwitchEdit}>
           Cancel

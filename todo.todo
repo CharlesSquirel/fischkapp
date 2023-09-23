@@ -1,0 +1,11 @@
+☐ zlikwidować Card component, zamiast tego używać wszystkie w CardSide i potem zmienić nazwę na zwykłe Card
+☐ typy do typów, potem zastanowić się, czy jeszcze bardziej nie podzielić?
+☐ na koniec ostatecznie sprawdzić UI
+☐ token do zmiennych środowiskowych env
+☐ style odseparować od componentów do jednego folderu
+☐ CardList to nie współdzielony komponent, czyli wywalić z /common
+☐ enumy tam gdzie unie ze stringami
+☐ kolejność importów na koniec
+☐ kolejność css na koniec
+☐ nieużywane importy na koniec posprawdzać oraz komentarze
+☐ textarea zablokowany w edit @high

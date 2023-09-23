@@ -1,13 +1,14 @@
 import { CardTextsProps } from "../types/types";
 
 const url = "https://training.nerdbord.io/api/v1/fischkapp/flashcards";
+const token = "secret_token";
 
 export const addCard = async (card: CardTextsProps) => {
   try {
     const res = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "secret_token",
+        Authorization: token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -22,8 +23,8 @@ export const addCard = async (card: CardTextsProps) => {
 
     const data = await res.json();
     console.log("Card added successfully:", data);
-  } catch (error) {
-    console.error("There was a problem adding the card:", error);
+  } catch (err) {
+    console.error("There was a problem adding the card:", err);
   }
 };
 
@@ -34,7 +35,27 @@ export const getCards = async (settingFunction: React.Dispatch<React.SetStateAct
   settingFunction(data ? data : null);
 };
 
-export enum CardTypes {
-  frontType = "front",
-  backType = "back",
-}
+export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) => {
+  const { _id } = card;
+  const { front, back } = newCard;
+  try {
+    const res = await fetch(`${url}/${_id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        front: front,
+        back: back,
+      }),
+    });
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await res.json();
+    console.log("Card added successfully:", data);
+  } catch (err) {
+    console.error("There was a problem adding the card:", err);
+  }
+};

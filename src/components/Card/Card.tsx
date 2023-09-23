@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import CardSide from "./CardSide";
-import { ICard } from "../services/types/types";
-import { CardTypes } from "../services/api/api";
+import styles from "./Card.module.scss";
+import globalStyles from "../../styles/GlobalClaasses.module.scss";
+import ButtonEdit from "../common/ButtonsIcon/ButtonEdit/ButtonEdit";
+import CardEdit from "./CardEdit";
+import { CardTypes, ICard } from "../services/types/types";
 
 const Card: React.FC<ICard> = ({ card }) => {
   const [type, setType] = useState(CardTypes.frontType);
@@ -12,10 +14,25 @@ const Card: React.FC<ICard> = ({ card }) => {
     setType(type === CardTypes.frontType ? CardTypes.backType : CardTypes.frontType);
   };
 
+  const handleSwitchEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const { front, back } = card;
+
   return (
-    <div onClick={handleCardRevert}>
-      <CardSide type={type} isEditing={isEditing} setIsEditing={setIsEditing} card={card} />
-    </div>
+    <>
+      {isEditing ? (
+        <CardEdit handleSwitchEdit={handleSwitchEdit} type={type} card={card} />
+      ) : (
+        <article className={styles.cardContainer} onClick={handleCardRevert}>
+          <p className={styles.cardText}>{type === "front" ? front : back}</p>
+          <button className={globalStyles.btnIcon} onClick={handleSwitchEdit}>
+            <ButtonEdit />
+          </button>
+        </article>
+      )}
+    </>
   );
 };
 

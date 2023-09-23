@@ -22,6 +22,7 @@ export interface IButtonIcon {
 export interface CardTextsProps {
   front: string;
   back: string;
+  _id?: string;
 }
 
 export const initialCardText: CardTextsProps = {
@@ -29,20 +30,25 @@ export const initialCardText: CardTextsProps = {
   back: "back text",
 };
 
+export interface ICardEdit {
+  handleSwitchEdit: () => void;
+  type: "front" | "back";
+  card: CardTextsProps;
+}
+
 export interface ICard {
   card: CardTextsProps;
 }
 
-export interface ICardEdit {
-  handleSwitchEdit: () => void;
-  type: string;
+export enum CardTypes {
+  frontType = "front",
+  backType = "back",
 }
 
-export interface ICardSide {
-  type: string;
-  isEditing: boolean;
-  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
-  card: CardTextsProps;
+export interface IInputCard {
+  type?: "front" | "back";
+  textToEdit?: CardTextsProps;
+  setTextToEdit?: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export type StateFunctionProps = React.Dispatch<React.SetStateAction<boolean>>;
