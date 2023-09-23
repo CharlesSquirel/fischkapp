@@ -1,4 +1,4 @@
-☐ zlikwidować Card component, zamiast tego używać wszystkie w CardSide i potem zmienić nazwę na zwykłe Card
+✔ zlikwidować Card component, zamiast tego używać wszystkie w CardSide i potem zmienić nazwę na zwykłe Card @done (23.09.2023, 20:43:52)
 ☐ typy do typów, potem zastanowić się, czy jeszcze bardziej nie podzielić?
 ☐ na koniec ostatecznie sprawdzić UI
 ☐ token do zmiennych środowiskowych env
@@ -8,4 +8,6 @@
 ☐ kolejność importów na koniec
 ☐ kolejność css na koniec
 ☐ nieużywane importy na koniec posprawdzać oraz komentarze
-☐ textarea zablokowany w edit @high
+✔ textarea zablokowany w edit @high @done (23.09.2023, 20:43:45)
+☐ padding-bottom dla listy kart czy coś
+☐ problem z dodawaniem karty - input @high

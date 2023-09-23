@@ -59,3 +59,21 @@ export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) 
     console.error("There was a problem adding the card:", err);
   }
 };
+
+export const deleteCard = async (card: CardTextsProps) => {
+  const { _id } = card;
+  try {
+    const res = await fetch(`${url}/${_id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    console.log("Card deleted successfully:");
+  } catch (err) {
+    console.error("There was a problem deleting the card:", err);
+  }
+};
