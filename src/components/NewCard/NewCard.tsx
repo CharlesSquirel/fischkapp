@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import styles from "./styles/NewCard.module.scss";
+import React, { useState } from "react";
+import styles from "../../styles/NewCard.module.scss";
 import FrontNewCard from "./FrontNewCard";
 import BackNewCard from "./BackNewCard";
 

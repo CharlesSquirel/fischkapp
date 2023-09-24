@@ -1,22 +1,33 @@
 import { ReactNode } from "react";
 
-export interface IButton {
-  text: string;
-  handleReverseCard?: () => void;
-  handleSwitchEdit?: () => void;
-  cancelAdding?: () => void;
-}
-
-export interface INewCard {
-  handleFlip?: () => void;
-}
+export type StateFunctionProps = React.Dispatch<React.SetStateAction<boolean>>;
+export type ObjectFunctionProps = React.Dispatch<React.SetStateAction<CardTextsProps>>;
 
 export type PropsWithChildren = {
   children: ReactNode;
 };
 
+export enum CardTypes {
+  front = "front",
+  back = "back",
+}
+
+export interface IButton extends IButtonIcon {
+  text: string;
+  handleReverseCard?: () => void;
+  cancelAdding?: () => void;
+}
+
 export interface IButtonIcon {
   handleSwitchEdit?: () => void;
+}
+
+export interface IAddButton {
+  onClick?: () => void;
+}
+
+export interface INewCard {
+  handleFlip?: () => void;
 }
 
 export interface CardTextsProps {
@@ -30,26 +41,30 @@ export const initialCardText: CardTextsProps = {
   back: "back text",
 };
 
-export interface ICardEdit {
+export interface ICardEdit extends ICard {
   handleSwitchEdit: () => void;
-  type: "front" | "back";
-  card: CardTextsProps;
+  type: CardTypes;
 }
 
 export interface ICard {
   card: CardTextsProps;
 }
 
-export enum CardTypes {
-  frontType = "front",
-  backType = "back",
-}
-
 export interface IInputCard {
-  type?: "front" | "back";
+  type?: CardTypes;
   textToEdit?: CardTextsProps;
   setTextToEdit?: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export type StateFunctionProps = React.Dispatch<React.SetStateAction<boolean>>;
-export type ObjectFunctionProps = React.Dispatch<React.SetStateAction<CardTextsProps>>;
+export interface ICardsCounter {
+  count: string;
+}
+
+export interface ContextProps {
+  isNewCardshowed: boolean;
+  setIsNewCardShowed: StateFunctionProps;
+  newCardTexts: CardTextsProps;
+  setNewCardTexts: ObjectFunctionProps;
+  flashCards: object;
+  setFlashCards: React.Dispatch<React.SetStateAction<any>>;
+}
