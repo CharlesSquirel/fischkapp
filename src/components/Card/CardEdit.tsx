@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import styles from "./Card.module.scss";
+import styles from "../../styles/Card.module.scss";
 import ButtonDelete from "../common/ButtonsIcon/ButtonDelete/ButtonDelete";
 import InputCard from "../common/InputCard/InputCard";
 import globalStyles from "../../styles/GlobalClaasses.module.scss";
