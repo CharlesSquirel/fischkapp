@@ -1,17 +1,12 @@
-import type { Config } from 'jest';
-
-const config: Config = {
-  clearMocks: true,
-  collectCoverage: true,
-  coverageDirectory: 'coverage',
-  coverageProvider: 'v8',
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+/** @type {import('ts-jest').JestConfigWithTsJest} */
+export default {
+  preset: "ts-jest",
+  testEnvironment: "jest-environment-jsdom",
+  moduleNameMapper: {
+    "\\.css$": "identity-obj-proxy",
   },
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": "ts-jest",
+    ".+\\.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+  },
 };
-
-export default config;

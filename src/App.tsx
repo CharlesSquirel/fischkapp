@@ -15,7 +15,7 @@ export const Context = React.createContext<ContextProps>({
   setNewCardTexts: () => {},
   flashCards: [],
   setFlashCards: () => {},
-  scrollContainerRef: null
+  scrollContainerRef: null,
 });
 
 function App() {
