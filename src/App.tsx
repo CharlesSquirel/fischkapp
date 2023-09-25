@@ -1,21 +1,14 @@
 import { AppHeader } from "./components/Header/AppHeader";
 import { AppLayout } from "./components/AppLayout";
 import "./styles/App.scss";
-import CardList from "./components/common/CardList/CardList";
+import CardList from "./components/CardList/CardList";
 import React, { ReactNode, useEffect, useState } from "react";
 import NewCard from "./components/NewCard/NewCard";
-import { CardTextsProps, ObjectFunctionProps, StateFunctionProps, initialCardText } from "./components/services/types/types";
+import { CardTextsProps, ContextProps, initialCardText } from "./components/services/types/types";
 import Card from "./components/Card/Card";
 import { getCards } from "./components/services/api/api";
 
-export const Context = React.createContext<{
-  isNewCardshowed: boolean;
-  setIsNewCardShowed: StateFunctionProps;
-  newCardTexts: CardTextsProps;
-  setNewCardTexts: ObjectFunctionProps;
-  flashCards: object;
-  setFlashCards: React.Dispatch<React.SetStateAction<any>>;
-}>({
+export const Context = React.createContext<ContextProps>({
   isNewCardshowed: false,
   setIsNewCardShowed: () => {},
   newCardTexts: initialCardText,

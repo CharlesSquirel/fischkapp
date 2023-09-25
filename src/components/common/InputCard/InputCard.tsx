@@ -1,7 +1,6 @@
-import React, { useContext, useRef, useState } from "react";
-import styles from "./InputCard.module.scss";
-import { Context } from "../../../App";
-import { IInputCard } from "../../services/types/types";
+import React, { useRef } from "react";
+import styles from "../../../styles/InputCard.module.scss";
+import { CardTypes, IInputCard } from "../../services/types/types";
 
 const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -16,7 +15,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit }) =>
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value;
     if (setTextToEdit) {
-      if (type === "front") {
+      if (type === CardTypes.front) {
         setTextToEdit({
           ...textToEdit,
           front: value,
