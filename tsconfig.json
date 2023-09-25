@@ -15,7 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "types": ["jest"],
+    
   },
   "include": ["src", "vite.config.ts", "module.d.ts"],
   "files": ["globals.d.ts"],

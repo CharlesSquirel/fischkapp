@@ -4,7 +4,7 @@ import ButtonDelete from "../common/ButtonsIcon/ButtonDelete/ButtonDelete";
 import InputCard from "../common/InputCard/InputCard";
 import globalStyles from "../../styles/GlobalClaasses.module.scss";
 import { Context } from "../../App";
-import { CardTextsProps, ICardEdit } from "../services/types/types";
+import { CardTextsProps, ICardEdit, InputTypes } from "../services/types/types";
 import { deleteCard, getCards, updateCard } from "../services/api/api";
 
 const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
@@ -16,21 +16,21 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
     back: card?.back || "",
   });
 
-  const handleSave = () => {
-    updateCard(card, textToEdit);
+  const handleSave = async () => {
+    await updateCard(card, textToEdit);
     handleSwitchEdit();
     getCards(setFlashCards);
   };
 
-  const handleDelete = () => {
-    deleteCard(card);
+  const handleDelete = async () => {
+    await deleteCard(card);
     handleSwitchEdit();
     getCards(setFlashCards);
   };
 
   return (
     <article className={styles.cardContainer}>
-      <InputCard textToEdit={textToEdit} setTextToEdit={setTextToEdit} type={type} />
+      <InputCard textToEdit={textToEdit} setTextToEdit={setTextToEdit} type={type} inputType={InputTypes.edit}/>
       <div className={globalStyles.btnBox}>
         <button className={globalStyles.btnLight} onClick={handleSwitchEdit}>
           Cancel

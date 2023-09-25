@@ -1,8 +1,12 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import styles from "../../../styles/InputCard.module.scss";
-import { CardTypes, IInputCard } from "../../services/types/types";
+import { CardTypes, IInputCard, InputTypes } from "../../services/types/types";
+import { Context } from "../../../App";
 
-const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit }) => {
+const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inputType }) => {
+  const context = useContext(Context);
+  const { newCardTexts, setNewCardTexts } = context;
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const adjustTextareaHeight = (): void => {
@@ -14,24 +18,35 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit }) =>
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value;
-    if (setTextToEdit) {
+    if ((inputType === InputTypes.edit)) {
+      if (setTextToEdit) {
+        if (type === CardTypes.front) {
+          setTextToEdit({
+            ...textToEdit,
+            front: value,
+          });
+        } else {
+          setTextToEdit({
+            ...textToEdit,
+            back: value,
+          });
+        }
+      }
+    }
+    else   {
       if (type === CardTypes.front) {
-        setTextToEdit({
-          ...textToEdit,
+        setNewCardTexts({
+          ...newCardTexts,
           front: value,
         });
       } else {
-        setTextToEdit({
-          ...textToEdit,
+        setNewCardTexts({
+          ...newCardTexts,
           back: value,
         });
       }
     }
   };
-
-  if (!textToEdit) {
-    return <div>Brak danych do edycji.</div>;
-  }
 
   return (
     <textarea
@@ -40,7 +55,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit }) =>
       ref={textareaRef}
       onInput={adjustTextareaHeight}
       onChange={handleInputChange}
-      value={type === "front" ? textToEdit.front : textToEdit.back}
+      value={CardTypes.front ? textToEdit?.front : CardTypes.back ? textToEdit?.back : ""}
     ></textarea>
   );
 };

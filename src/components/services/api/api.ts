@@ -20,9 +20,7 @@ export const addCard = async (card: CardTextsProps) => {
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
-
-    const data = await res.json();
-    console.log("Card added successfully:", data);
+    console.log("Card added successfully:");
   } catch (err) {
     console.error("There was a problem adding the card:", err);
   }
@@ -31,7 +29,6 @@ export const addCard = async (card: CardTextsProps) => {
 export const getCards = async (settingFunction: React.Dispatch<React.SetStateAction<any>>) => {
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
   settingFunction(data ? data : null);
 };
 
@@ -53,8 +50,7 @@ export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) 
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
-    const data = await res.json();
-    console.log("Card added successfully:", data);
+    console.log("Card edited successfully:");
   } catch (err) {
     console.error("There was a problem adding the card:", err);
   }

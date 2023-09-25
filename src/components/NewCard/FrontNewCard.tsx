@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "../../styles/NewCard.module.scss";
 import globalStyles from "../../styles/GlobalClaasses.module.scss";
 import InputCard from "../common/InputCard/InputCard";
-import { CardTypes, INewCard } from "../services/types/types";
+import { CardTypes, INewCard, InputTypes } from "../services/types/types";
 import { Context } from "../../App";
 
 const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
@@ -15,7 +15,7 @@ const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
 
   return (
     <article className={styles.cardFrontContainer}>
-      <InputCard type={CardTypes.front} />
+      <InputCard type={CardTypes.front} inputType={InputTypes.add}/>
       <div className={globalStyles.btnBox}>
         <button className={globalStyles.btnLight} onClick={handleCancel}>
           Cancel

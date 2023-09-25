@@ -6,10 +6,17 @@ import { IAddButton } from "../services/types/types";
 
 const AddButton: React.FC<IAddButton> = () => {
   const context = useContext(Context);
-  const { isNewCardshowed, setIsNewCardShowed } = context;
+  const { isNewCardshowed, setIsNewCardShowed, scrollContainerRef } = context;
+
+  const scrollToTop = () => {
+    if (scrollContainerRef?.current) {
+      scrollContainerRef.current.scrollTop = 0
+    }
+  };
 
   const handleAddNewCard = () => {
     setIsNewCardShowed(!isNewCardshowed);
+    scrollToTop()
   };
 
   return (
