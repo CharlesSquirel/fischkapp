@@ -51,7 +51,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
   return (
     <textarea
       id="text"
-      className={styles.inputCard}
+      className={styles?.inputCard}
       ref={textareaRef}
       onInput={adjustTextareaHeight}
       onChange={handleInputChange}

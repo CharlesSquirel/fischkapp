@@ -6,5 +6,5 @@ import { Context } from "../App";
 export const AppLayout = ({ children }: PropsWithChildren) => {
   const context = useContext(Context);
   const { scrollContainerRef } = context;
-  return <div className={styles.layout} ref={scrollContainerRef}>{children}</div>;
+  return <div className={styles?.layout} ref={scrollContainerRef}>{children}</div>;
 };

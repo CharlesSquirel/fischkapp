@@ -22,20 +22,20 @@ const BackNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   };
 
   return (
-    <article className={styles.cardBackContainer}>
-      <div className={styles.inputBox}>
-        <p className={styles.text}>{newCardTexts.front}</p>
+    <article className={styles?.cardBackContainer}>
+      <div className={styles?.inputBox}>
+        <p className={styles?.text}>{newCardTexts.front}</p>
         <InputCard type={CardTypes.back} inputType={InputTypes.add}/>
       </div>
-      <div className={globalStyles.btnBox}>
-        <button className={globalStyles.btnLight} onClick={handleFlip}>
+      <div className={globalStyles?.btnBox}>
+        <button className={globalStyles?.btnLight} onClick={handleFlip}>
           Back
         </button>
-        <button className={globalStyles.btnDark} onClick={handleSave}>
+        <button className={globalStyles?.btnDark} onClick={handleSave}>
           Save
         </button>
       </div>
-      <button className={globalStyles.btnIcon} onClick={handleDelete}>
+      <button className={globalStyles?.btnIcon} onClick={handleDelete}>
         <ButtonDelete />
       </button>
     </article>

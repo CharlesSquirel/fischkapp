@@ -5,7 +5,7 @@ import { Context } from "../../App";
 const CardsCounter: React.FC = () => {
   const context = useContext(Context);
   const { flashCards} = context;
-  return <p className={styles.counter}>Cards: {flashCards.length}</p>;
+  return <p className={styles?.counter}>Cards: {flashCards.length}</p>;
 };
 
 export default CardsCounter;

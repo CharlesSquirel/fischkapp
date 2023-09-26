@@ -1,8 +1,9 @@
+import * as React from 'react'
 import { AppHeader } from "./components/Header/AppHeader";
 import { AppLayout } from "./components/AppLayout";
 import "./styles/App.scss";
 import CardList from "./components/CardList/CardList";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import NewCard from "./components/NewCard/NewCard";
 import { CardTextsProps, ContextProps, initialCardText } from "./components/services/types/types";
 import Card from "./components/Card/Card";

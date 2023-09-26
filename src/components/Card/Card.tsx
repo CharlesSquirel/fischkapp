@@ -25,9 +25,9 @@ const Card: React.FC<ICard> = ({ card }) => {
       {isEditing ? (
         <CardEdit handleSwitchEdit={handleSwitchEdit} type={type} card={card} />
       ) : (
-        <article className={styles.cardContainer} onClick={handleCardRevert}>
-          <p className={styles.cardText}>{type === CardTypes.front ? front : back}</p>
-          <button className={globalStyles.btnIcon} onClick={handleSwitchEdit}>
+        <article className={styles?.cardContainer} onClick={handleCardRevert}>
+          <p className={styles?.cardText}>{type === CardTypes.front ? front : back}</p>
+          <button className={globalStyles?.btnIcon} onClick={handleSwitchEdit}>
             <ButtonEdit />
           </button>
         </article>

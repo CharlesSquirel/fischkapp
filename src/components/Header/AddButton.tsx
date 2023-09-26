@@ -20,7 +20,7 @@ const AddButton: React.FC<IAddButton> = () => {
   };
 
   return (
-    <button className={styles.addbtn} onClick={handleAddNewCard}>
+    <button className={styles?.addbtn} onClick={handleAddNewCard}>
       <img src={plusIcon} alt="plus icon" />
     </button>
   );

@@ -14,13 +14,13 @@ const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   };
 
   return (
-    <article className={styles.cardFrontContainer}>
+    <article className={styles?.cardFrontContainer}>
       <InputCard type={CardTypes.front} inputType={InputTypes.add}/>
-      <div className={globalStyles.btnBox}>
-        <button className={globalStyles.btnLight} onClick={handleCancel}>
+      <div className={globalStyles?.btnBox}>
+        <button className={globalStyles?.btnLight} onClick={handleCancel}>
           Cancel
         </button>
-        <button className={globalStyles.btnDark} onClick={handleFlip}>
+        <button className={globalStyles?.btnDark} onClick={handleFlip}>
           Next
         </button>
       </div>

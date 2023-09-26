@@ -29,17 +29,17 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   };
 
   return (
-    <article className={styles.cardContainer}>
+    <article className={styles?.cardContainer}>
       <InputCard textToEdit={textToEdit} setTextToEdit={setTextToEdit} type={type} inputType={InputTypes.edit}/>
-      <div className={globalStyles.btnBox}>
-        <button className={globalStyles.btnLight} onClick={handleSwitchEdit}>
+      <div className={globalStyles?.btnBox}>
+        <button className={globalStyles?.btnLight} onClick={handleSwitchEdit}>
           Cancel
         </button>
-        <button className={globalStyles.btnDark} onClick={handleSave}>
+        <button className={globalStyles?.btnDark} onClick={handleSave}>
           Save
         </button>
       </div>
-      <div className={globalStyles.btnIcon} onClick={handleDelete}>
+      <div className={globalStyles?.btnIcon} onClick={handleDelete}>
         <ButtonDelete />
       </div>
     </article>
