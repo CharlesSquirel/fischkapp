@@ -7,7 +7,7 @@ import { Context } from "../../App";
 
 const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   const context = useContext(Context);
-  const { isNewCardshowed, setIsNewCardShowed } = context;
+  const { isNewCardshowed, setIsNewCardShowed, newCardTexts } = context;
 
   const handleCancel = () => {
     setIsNewCardShowed(!isNewCardshowed);
@@ -20,7 +20,7 @@ const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
         <button className={globalStyles?.btnLight} onClick={handleCancel}>
           Cancel
         </button>
-        <button className={globalStyles?.btnDark} onClick={handleFlip}>
+        <button className={globalStyles?.btnDark} onClick={handleFlip} disabled={!newCardTexts.front}>
           Next
         </button>
       </div>

@@ -11,7 +11,7 @@ const NewCard: React.FC = () => {
   };
 
   return (
-    <div className={styles?.cardContainerMain}>
+    <div className={styles?.cardContainerMain} data-testid="new-card">
       {!isCardFlipped && <FrontNewCard handleFlip={handleFlip} />}
       {isCardFlipped && <BackNewCard handleFlip={handleFlip} />}
     </div>

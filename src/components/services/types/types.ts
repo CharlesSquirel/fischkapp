@@ -42,8 +42,8 @@ export interface CardTextsProps {
 }
 
 export const initialCardText: CardTextsProps = {
-  front: "front text",
-  back: "back text",
+  front: "",
+  back: "",
 };
 
 export interface ICardEdit extends ICard {

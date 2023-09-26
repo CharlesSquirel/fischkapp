@@ -31,11 +31,11 @@ const BackNewCard: React.FC<INewCard> = ({ handleFlip }) => {
         <button className={globalStyles?.btnLight} onClick={handleFlip}>
           Back
         </button>
-        <button className={globalStyles?.btnDark} onClick={handleSave}>
+        <button className={globalStyles?.btnDark} onClick={handleSave} disabled={!newCardTexts.back}>
           Save
         </button>
       </div>
-      <button className={globalStyles?.btnIcon} onClick={handleDelete}>
+      <button className={globalStyles?.btnIcon} onClick={handleDelete} >
         <ButtonDelete />
       </button>
     </article>
