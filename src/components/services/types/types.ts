@@ -12,6 +12,11 @@ export enum CardTypes {
   back = "back",
 }
 
+export enum InputTypes {
+  add = "add",
+  edit = "edit",
+}
+
 export interface IButton extends IButtonIcon {
   text: string;
   handleReverseCard?: () => void;
@@ -37,8 +42,8 @@ export interface CardTextsProps {
 }
 
 export const initialCardText: CardTextsProps = {
-  front: "front text",
-  back: "back text",
+  front: "",
+  back: "",
 };
 
 export interface ICardEdit extends ICard {
@@ -54,10 +59,7 @@ export interface IInputCard {
   type?: CardTypes;
   textToEdit?: CardTextsProps;
   setTextToEdit?: React.Dispatch<React.SetStateAction<any>>;
-}
-
-export interface ICardsCounter {
-  count: string;
+  inputType: InputTypes
 }
 
 export interface ContextProps {
@@ -65,6 +67,16 @@ export interface ContextProps {
   setIsNewCardShowed: StateFunctionProps;
   newCardTexts: CardTextsProps;
   setNewCardTexts: ObjectFunctionProps;
-  flashCards: object;
+  flashCards: IFlashcard[];
   setFlashCards: React.Dispatch<React.SetStateAction<any>>;
+  scrollContainerRef: React.RefObject<HTMLDivElement> | null
+}
+
+interface IFlashcard {
+  _id: string;
+  _v: number;
+  back: string;
+  front: string;
+  uptadetAt: string;
+  createdAt: string;
 }

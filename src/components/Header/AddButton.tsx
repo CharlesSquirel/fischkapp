@@ -6,14 +6,22 @@ import { IAddButton } from "../services/types/types";
 
 const AddButton: React.FC<IAddButton> = () => {
   const context = useContext(Context);
-  const { isNewCardshowed, setIsNewCardShowed } = context;
+  const { isNewCardshowed, setIsNewCardShowed, scrollContainerRef, newCardTexts } = context;
+
+  const scrollToTop = () => {
+    if (scrollContainerRef?.current) {
+      scrollContainerRef.current.scrollTop = 0
+    }
+  };
 
   const handleAddNewCard = () => {
     setIsNewCardShowed(!isNewCardshowed);
+    console.log(newCardTexts.front)
+    scrollToTop()
   };
 
   return (
-    <button className={styles.addbtn} onClick={handleAddNewCard}>
+    <button className={styles?.addbtn} onClick={handleAddNewCard}>
       <img src={plusIcon} alt="plus icon" />
     </button>
   );

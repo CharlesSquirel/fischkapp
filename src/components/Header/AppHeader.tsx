@@ -4,10 +4,10 @@ import CardsCounter from "./CardsCounter";
 import Logo from "./Logo";
 
 export const AppHeader: React.FC = () => (
-  <header className={styles.header}>
-    <div className={styles.logoContainer}>
+  <header className={styles?.header}>
+    <div className={styles?.logoContainer}>
       <Logo />
-      <CardsCounter count="0" />
+      <CardsCounter/>
     </div>
     <AddButton />
   </header>

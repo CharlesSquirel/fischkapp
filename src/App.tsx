@@ -1,8 +1,9 @@
+import * as React from 'react'
 import { AppHeader } from "./components/Header/AppHeader";
 import { AppLayout } from "./components/AppLayout";
 import "./styles/App.scss";
 import CardList from "./components/CardList/CardList";
-import React, { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import NewCard from "./components/NewCard/NewCard";
 import { CardTextsProps, ContextProps, initialCardText } from "./components/services/types/types";
 import Card from "./components/Card/Card";
@@ -15,19 +16,21 @@ export const Context = React.createContext<ContextProps>({
   setNewCardTexts: () => {},
   flashCards: [],
   setFlashCards: () => {},
+  scrollContainerRef: null,
 });
 
 function App() {
   const [isNewCardshowed, setIsNewCardShowed] = useState(false);
   const [newCardTexts, setNewCardTexts] = useState<CardTextsProps>(initialCardText);
   const [flashCards, setFlashCards] = useState([]);
+  const scrollContainerRef = useRef(null);
 
   useEffect(() => {
     getCards(setFlashCards);
   }, []);
 
   return (
-    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards }}>
+    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef }}>
       <AppLayout>
         <AppHeader />
         <CardList>

@@ -1,15 +1,12 @@
-/**
- * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/configuration
- */
-
-import type {Config} from 'jest';
-
-const config: Config = {
-  clearMocks: true,
-  collectCoverage: true,
-  coverageDirectory: "coverage",
-  coverageProvider: "v8",
+/** @type {import('ts-jest').JestConfigWithTsJest} */
+export default {
+  preset: "ts-jest",
+  testEnvironment: "jest-environment-jsdom",
+  moduleNameMapper: {
+    "\\.css$": "identity-obj-proxy",
+  },
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": "ts-jest",
+    ".+\\.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+  },
 };
-
-export default config;
