@@ -10,14 +10,13 @@ const AddButton: React.FC<IAddButton> = () => {
 
   const scrollToTop = () => {
     if (scrollContainerRef?.current) {
-      scrollContainerRef.current.scrollTop = 0
+      scrollContainerRef.current.scrollTop = 0;
     }
   };
 
   const handleAddNewCard = () => {
     setIsNewCardShowed(!isNewCardshowed);
-    console.log(newCardTexts.front)
-    scrollToTop()
+    scrollToTop();
   };
 
   return (
