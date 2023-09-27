@@ -14,7 +14,7 @@ const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   };
   return (
     <article className={styles?.cardFrontContainer} data-testid="front-new-card">
-      <InputCard type={CardTypes.front} inputType={InputTypes.add}/>
+      <InputCard type={CardTypes.front} inputType={InputTypes.add} />
       <div className={globalStyles?.btnBox}>
         <button className={globalStyles?.btnLight} onClick={handleCancel}>
           Cancel

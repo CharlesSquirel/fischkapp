@@ -20,7 +20,7 @@ export const addCard = async (card: CardTextsProps) => {
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
-    console.log("Card added successfully:");
+    console.log("Card added successfully");
   } catch (err) {
     console.error("There was a problem adding the card:", err);
   }
@@ -50,7 +50,7 @@ export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) 
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
-    console.log("Card edited successfully:");
+    console.log("Card edited successfully");
   } catch (err) {
     console.error("There was a problem adding the card:", err);
   }
@@ -70,6 +70,6 @@ export const deleteCard = async (card: CardTextsProps) => {
     }
     console.log("Card deleted successfully:");
   } catch (err) {
-    console.error("There was a problem deleting the card:", err);
+    console.error("There was a problem deleting the card", err);
   }
 };

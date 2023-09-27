@@ -18,7 +18,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value;
-    if ((inputType === InputTypes.edit)) {
+    if (inputType === InputTypes.edit) {
       if (setTextToEdit) {
         if (type === CardTypes.front) {
           setTextToEdit({
@@ -32,8 +32,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
           });
         }
       }
-    }
-    else   {
+    } else {
       if (type === CardTypes.front) {
         setNewCardTexts({
           ...newCardTexts,

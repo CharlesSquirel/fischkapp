@@ -19,7 +19,7 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   const handleSave = async () => {
     await updateCard(card, textToEdit);
     handleSwitchEdit();
-    getCards(setFlashCards);
+    await getCards(setFlashCards);
   };
 
   const handleDelete = async () => {
@@ -29,13 +29,13 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   };
 
   return (
-    <article className={styles?.cardContainer}>
-      <InputCard textToEdit={textToEdit} setTextToEdit={setTextToEdit} type={type} inputType={InputTypes.edit}/>
+    <article className={styles?.cardContainer} data-testid="edit-card">
+      <InputCard textToEdit={textToEdit} setTextToEdit={setTextToEdit} type={type} inputType={InputTypes.edit} />
       <div className={globalStyles?.btnBox}>
         <button className={globalStyles?.btnLight} onClick={handleSwitchEdit}>
           Cancel
         </button>
-        <button className={globalStyles?.btnDark} onClick={handleSave}>
+        <button className={globalStyles?.btnDark} onClick={handleSave} disabled={!textToEdit.front || !textToEdit.back}>
           Save
         </button>
       </div>
