@@ -12,15 +12,14 @@ const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   const handleCancel = () => {
     setIsNewCardShowed(!isNewCardshowed);
   };
-
   return (
-    <article className={styles?.cardFrontContainer}>
+    <article className={styles?.cardFrontContainer} data-testid="front-new-card">
       <InputCard type={CardTypes.front} inputType={InputTypes.add}/>
       <div className={globalStyles?.btnBox}>
         <button className={globalStyles?.btnLight} onClick={handleCancel}>
           Cancel
         </button>
-        <button className={globalStyles?.btnDark} onClick={handleFlip} disabled={!newCardTexts.front}>
+        <button className={globalStyles?.btnDark} onClick={handleFlip} disabled={Boolean(!newCardTexts.front)}>
           Next
         </button>
       </div>

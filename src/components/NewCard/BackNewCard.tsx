@@ -21,8 +21,10 @@ const BackNewCard: React.FC<INewCard> = ({ handleFlip }) => {
     getCards(setFlashCards)
   };
 
+  
+
   return (
-    <article className={styles?.cardBackContainer}>
+    <article className={styles?.cardBackContainer} data-testid="back-new-card">
       <div className={styles?.inputBox}>
         <p className={styles?.text}>{newCardTexts.front}</p>
         <InputCard type={CardTypes.back} inputType={InputTypes.add}/>
@@ -31,7 +33,7 @@ const BackNewCard: React.FC<INewCard> = ({ handleFlip }) => {
         <button className={globalStyles?.btnLight} onClick={handleFlip}>
           Back
         </button>
-        <button className={globalStyles?.btnDark} onClick={handleSave} disabled={!newCardTexts.back}>
+        <button className={globalStyles?.btnDark} onClick={handleSave} disabled={Boolean(!newCardTexts.back)}>
           Save
         </button>
       </div>
