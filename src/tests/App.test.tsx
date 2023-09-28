@@ -2,14 +2,18 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import NewCard from "../components/NewCard/NewCard";
 import { Context } from "../App";
-import { ContextProps, initialCardText, ICard } from "../components/services/types/types";
+import { ContextProps, initialCardText } from "../components/services/types/types";
 import { AppHeader } from "../components/Header/AppHeader";
 import { AppLayout } from "../components/AppLayout";
 import CardList from "../components/CardList/CardList";
 import Card from "../components/Card/Card";
+import fetchMock from "jest-fetch-mock";
+import { deleteCard, token, url } from "../components/services/api/api";
+
+fetchMock.enableMocks();
 
 const flaschCardTest = {
-  _id: "testid",
+  _id: "123",
   _v: 1,
   back: "back",
   front: "front",
@@ -104,4 +108,50 @@ describe("tests editing card", () => {
     const card = screen.getByTestId("card");
     expect(card).toBeInTheDocument();
   });
+});
+
+describe("testing delete card", () => {
+  beforeEach(() => {
+    fetchMock.resetMocks();
+  });
+  it("properly delete card", async () => {
+    fetchMock.mockResponseOnce(JSON.stringify({ message: "Card deleted successfully" }), { status: 200 });
+    const result = await deleteCard(flaschCardTest);
+    const { _id } = flaschCardTest;
+    try {
+      expect(fetch).toHaveBeenCalledWith(`${url}/${_id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: token,
+        },
+      });
+    } catch (err) {
+      fail("Funkcja rzuciła błędem: " + err);
+    }
+  });
+
+  it('Powinno obsłużyć błąd przy usuwaniu karty', async () => {
+    // Symulujemy błąd na serwerze
+    fetchMock.mockResponseOnce(JSON.stringify({ error: 'Błąd podczas usuwania karty' }), { status: 500 });
+    const { _id } = flaschCardTest;
+
+    try {
+      await deleteCard(flaschCardTest);
+
+      // Jeśli funkcja nie rzuciła błędem, test jest nieudany
+      fail('Funkcja nie rzuciła błędem');
+    } catch (error) {
+      // Sprawdzamy, czy funkcja fetch została wywołana z odpowiednimi argumentami (metoda DELETE, URL i nagłówki)
+      expect(fetch).toHaveBeenCalledWith(`url/${_id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: 'token', // Załóżmy, że token jest dostępny
+        },
+      });
+
+      // Sprawdzamy, czy funkcja zwraca oczekiwany błąd
+      // expect(error.message).toBe('Network response was not ok');
+    }
+  });
+});
 });
