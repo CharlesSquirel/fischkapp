@@ -59,7 +59,7 @@ export interface IInputCard {
   type?: CardTypes;
   textToEdit?: CardTextsProps;
   setTextToEdit?: React.Dispatch<React.SetStateAction<any>>;
-  inputType: InputTypes
+  inputType: InputTypes;
 }
 
 export interface ContextProps {
@@ -69,10 +69,10 @@ export interface ContextProps {
   setNewCardTexts: ObjectFunctionProps;
   flashCards: IFlashcard[];
   setFlashCards: React.Dispatch<React.SetStateAction<any>>;
-  scrollContainerRef: React.RefObject<HTMLDivElement> | null
+  scrollContainerRef: React.RefObject<HTMLDivElement> | null;
 }
 
-interface IFlashcard {
+export interface IFlashcard {
   _id: string;
   _v: number;
   back: string;
