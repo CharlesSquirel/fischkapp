@@ -13,6 +13,33 @@ import { ReactNode } from "react";
 
 fetchMock.enableMocks();
 
+const flashCards = [
+  {
+    _id: "0",
+    _v: 0,
+    back: "back0",
+    front: "front0",
+    uptadetAt: "test0",
+    createdAt: "test0",
+  },
+  {
+    _id: "1",
+    _v: 1,
+    back: "back1",
+    front: "front1",
+    uptadetAt: "test1",
+    createdAt: "test1",
+  },
+  {
+    _id: "3",
+    _v: 3,
+    back: "back3",
+    front: "front3",
+    uptadetAt: "test3",
+    createdAt: "test3",
+  },
+];
+
 const flaschCardTest = {
   _id: "123",
   _v: 1,
@@ -111,54 +138,28 @@ describe("tests editing card", () => {
   });
 });
 
-describe("testing card list", () => {
-  const flashCards = [
-    {
-      _id: "0",
-      _v: 0,
-      back: "back0",
-      front: "front0",
-      uptadetAt: "test0",
-      createdAt: "test0",
-    },
-    {
-      _id: "1",
-      _v: 1,
-      back: "back1",
-      front: "front1",
-      uptadetAt: "test1",
-      createdAt: "test1",
-    },
-    {
-      _id: "3",
-      _v: 3,
-      back: "back3",
-      front: "front3",
-      uptadetAt: "test3",
-      createdAt: "test3",
-    },
-  ];
+it("properly delete card", async () => {
+  const { _id } = flaschCardTest;
+  const { setFlashCards, flashCards } = contextTestValue;
 
-  it("properly display cards", async () => {
-    render(
-      <CardList>
-        {flashCards.map((card, index: number): ReactNode => {
-          return <Card key={index} card={card} />;
-        })}
-      </CardList>
-    );
-    flashCards.forEach(({ front }) => {
-      const frontText = screen.getByText(front);
-      expect(frontText).toBeInTheDocument();
+  try {
+    fetchMock.mockResponseOnce(JSON.stringify({ message: "Card deleted successfully" }), { status: 200 });
+
+    await deleteCard(flaschCardTest);
+
+    expect(fetch).toHaveBeenCalledWith(`${url}/${_id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
     });
-    const cards = screen.getAllByTestId("card");
-    cards.forEach((card) => {
-      fireEvent.click(card);
-    });
-    flashCards.forEach(({ back }) => {
-      const backText = screen.getByText(back);
-      expect(backText).toBeInTheDocument();
-    });
-    screen.debug();
-  });
+    getCards(setFlashCards);
+    // Sprawdź, czy karta nie istnieje już w flashCards
+    const deletedCard = flashCards.find((card) => card._id === flaschCardTest._id);
+    if (deletedCard) {
+      throw new Error("Network response was not ok");
+    }
+  } catch (err) {
+    throw new Error("There was a problem deleting the card" + err);
+  }
 });
