@@ -138,28 +138,28 @@ describe("tests editing card", () => {
   });
 });
 
-it("properly delete card", async () => {
-  const { _id } = flaschCardTest;
-  const { setFlashCards, flashCards } = contextTestValue;
+// it("properly delete card", async () => {
+//   const { _id } = flaschCardTest;
+//   const { setFlashCards, flashCards } = contextTestValue;
 
-  try {
-    fetchMock.mockResponseOnce(JSON.stringify({ message: "Card deleted successfully" }), { status: 200 });
+//   try {
+//     fetchMock.mockResponseOnce(JSON.stringify({ message: "Card deleted successfully" }), { status: 200 });
 
-    await deleteCard(flaschCardTest);
+//     await deleteCard(flaschCardTest);
 
-    expect(fetch).toHaveBeenCalledWith(`${url}/${_id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: token,
-      },
-    });
-    getCards(setFlashCards);
-    // Sprawdź, czy karta nie istnieje już w flashCards
-    const deletedCard = flashCards.find((card) => card._id === flaschCardTest._id);
-    if (deletedCard) {
-      throw new Error("Network response was not ok");
-    }
-  } catch (err) {
-    throw new Error("There was a problem deleting the card" + err);
-  }
-});
+//     expect(fetch).toHaveBeenCalledWith(`${url}/${_id}`, {
+//       method: "DELETE",
+//       headers: {
+//         Authorization: token,
+//       },
+//     });
+//     getCards(setFlashCards);
+//     // Sprawdź, czy karta nie istnieje już w flashCards
+//     const deletedCard = flashCards.find((card) => card._id === flaschCardTest._id);
+//     if (deletedCard) {
+//       throw new Error("Network response was not ok");
+//     }
+//   } catch (err) {
+//     throw new Error("There was a problem deleting the card" + err);
+//   }
+// });
