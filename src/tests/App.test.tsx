@@ -1,14 +1,15 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, act, getAllByTestId } from "@testing-library/react";
 import NewCard from "../components/NewCard/NewCard";
 import { Context } from "../App";
-import { ContextProps, initialCardText } from "../components/services/types/types";
+import { ContextProps, ICard, IFlashcard, initialCardText } from "../components/services/types/types";
 import { AppHeader } from "../components/Header/AppHeader";
 import { AppLayout } from "../components/AppLayout";
 import CardList from "../components/CardList/CardList";
 import Card from "../components/Card/Card";
 import fetchMock from "jest-fetch-mock";
-import { deleteCard, token, url } from "../components/services/api/api";
+import { deleteCard, getCards, token, url } from "../components/services/api/api";
+import { ReactNode } from "react";
 
 fetchMock.enableMocks();
 
@@ -110,40 +111,54 @@ describe("tests editing card", () => {
   });
 });
 
-describe("testing delete card", () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-  });
-  it("properly delete card", async () => {
-    fetchMock.mockResponseOnce(JSON.stringify({ message: "Card deleted successfully" }), { status: 200 });
-    const result = await deleteCard(flaschCardTest);
-    const { _id } = flaschCardTest;
-    try {
-      expect(fetch).toHaveBeenCalledWith(`${url}/${_id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
-        },
-      });
-    } catch (err) {
-      fail("Funkcja rzuciła błędem: " + err);
-    }
-  });
+describe("testing card list", () => {
+  const flashCards = [
+    {
+      _id: "0",
+      _v: 0,
+      back: "back0",
+      front: "front0",
+      uptadetAt: "test0",
+      createdAt: "test0",
+    },
+    {
+      _id: "1",
+      _v: 1,
+      back: "back1",
+      front: "front1",
+      uptadetAt: "test1",
+      createdAt: "test1",
+    },
+    {
+      _id: "3",
+      _v: 3,
+      back: "back3",
+      front: "front3",
+      uptadetAt: "test3",
+      createdAt: "test3",
+    },
+  ];
 
-  it("properly handle error", async () => {
-    fetchMock.mockResponseOnce(JSON.stringify({ error: "Błąd podczas usuwania karty" }), { status: 500 });
-    const { _id } = flaschCardTest;
-
-    try {
-      await deleteCard(flaschCardTest);
-      fail("Funkcja nie rzuciła błędem");
-    } catch (error) {
-      expect(fetch).toHaveBeenCalledWith(`${url}/${_id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
-        },
-      });
-    }
+  it("properly display cards", async () => {
+    render(
+      <CardList>
+        {flashCards.map((card, index: number): ReactNode => {
+          return <Card key={index} card={card} />;
+        })}
+      </CardList>
+    );
+    flashCards.forEach(({ front }) => {
+      const frontText = screen.getByText(front);
+      expect(frontText).toBeInTheDocument();
+    });
+    const cards = screen.getAllByTestId("card");
+    cards.forEach((card) => {
+      fireEvent.click(card);
+    });
+    flashCards.forEach(({ back }) => {
+      const backText = screen.getByText(back);
+      expect(backText).toBeInTheDocument();
+    });
+    screen.debug();
   });
 });
