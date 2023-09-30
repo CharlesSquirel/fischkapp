@@ -164,54 +164,24 @@ it("properly delete card", async () => {
   }
 });
 
-describe("testing card list", () => {
-  const flashCards = [
-    {
-      _id: "0",
-      _v: 0,
-      back: "back0",
-      front: "front0",
-      uptadetAt: "test0",
-      createdAt: "test0",
-    },
-    {
-      _id: "1",
-      _v: 1,
-      back: "back1",
-      front: "front1",
-      uptadetAt: "test1",
-      createdAt: "test1",
-    },
-    {
-      _id: "3",
-      _v: 3,
-      back: "back3",
-      front: "front3",
-      uptadetAt: "test3",
-      createdAt: "test3",
-    },
-  ];
-
-  it("properly display cards", async () => {
-    render(
-      <CardList>
-        {flashCards.map((card, index: number): ReactNode => {
-          return <Card key={index} card={card} />;
-        })}
-      </CardList>
-    );
-    flashCards.forEach(({ front }) => {
-      const frontText = screen.getByText(front);
-      expect(frontText).toBeInTheDocument();
-    });
-    const cards = screen.getAllByTestId("card");
-    cards.forEach((card) => {
-      fireEvent.click(card);
-    });
-    flashCards.forEach(({ back }) => {
-      const backText = screen.getByText(back);
-      expect(backText).toBeInTheDocument();
-    });
-    screen.debug();
+it("properly display cards", async () => {
+  render(
+    <CardList>
+      {flashCards.map((card, index: number): ReactNode => {
+        return <Card key={index} card={card} />;
+      })}
+    </CardList>
+  );
+  flashCards.forEach(({ front }) => {
+    const frontText = screen.getByText(front);
+    expect(frontText).toBeInTheDocument();
+  });
+  const cards = screen.getAllByTestId("card");
+  cards.forEach((card) => {
+    fireEvent.click(card);
+  });
+  flashCards.forEach(({ back }) => {
+    const backText = screen.getByText(back);
+    expect(backText).toBeInTheDocument();
   });
 });
