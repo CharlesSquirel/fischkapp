@@ -13,6 +13,45 @@
   text-align: center;
 }
 
+.cardAnimation {
+  animation: flip-vertical-right 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  max-height: 188px;
+  p,
+  button {
+    animation: flip-vertical-right-child 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+}
+
+.cardAnimationNone {
+  animation: none;
+}
+
 .btnBox {
   @include btnBox;
+}
+
+@keyframes flip-vertical-right {
+  0% {
+    width: 343px;
+  }
+  50% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: 343px;
+    opacity: 1;
+  }
+}
+
+@keyframes flip-vertical-right-child {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
