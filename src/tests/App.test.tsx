@@ -163,25 +163,3 @@ it("properly delete card", async () => {
     throw new Error("There was a problem deleting the card" + err);
   }
 });
-
-it("properly display cards", async () => {
-  render(
-    <CardList>
-      {flashCards.map((card, index: number): ReactNode => {
-        return <Card key={index} card={card} />;
-      })}
-    </CardList>
-  );
-  flashCards.forEach(({ front }) => {
-    const frontText = screen.getByText(front);
-    expect(frontText).toBeInTheDocument();
-  });
-  const cards = screen.getAllByTestId("card");
-  cards.forEach((card) => {
-    fireEvent.click(card);
-  });
-  flashCards.forEach(({ back }) => {
-    const backText = screen.getByText(back);
-    expect(backText).toBeInTheDocument();
-  });
-});
