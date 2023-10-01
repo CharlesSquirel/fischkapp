@@ -1,14 +1,14 @@
 import { CardTextsProps } from "../types/types";
 
-export const url = "https://training.nerdbord.io/api/v1/fischkapp/flashcards";
-export const token = "secret_token";
+export const APP_URL = "https://training.nerdbord.io/api/v1/fischkapp/flashcards";
+export const APP_TOKEN = "secret_token";
 
 export const addCard = async (card: CardTextsProps) => {
   try {
-    const res = await fetch(url, {
+    const res = await fetch(APP_URL, {
       method: "POST",
       headers: {
-        Authorization: token,
+        Authorization: APP_TOKEN,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -27,7 +27,7 @@ export const addCard = async (card: CardTextsProps) => {
 };
 
 export const getCards = async (settingFunction: React.Dispatch<React.SetStateAction<any>>) => {
-  const res = await fetch(url);
+  const res = await fetch(APP_URL);
   const data = await res.json();
   settingFunction(data ? data : null);
 };
@@ -36,10 +36,10 @@ export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) 
   const { _id } = card;
   const { front, back } = newCard;
   try {
-    const res = await fetch(`${url}/${_id}`, {
+    const res = await fetch(`${APP_URL}/${_id}`, {
       method: "PATCH",
       headers: {
-        Authorization: token,
+        Authorization: APP_TOKEN,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -59,10 +59,10 @@ export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) 
 export const deleteCard = async (card: CardTextsProps) => {
   const { _id } = card;
   try {
-    const res = await fetch(`${url}/${_id}`, {
+    const res = await fetch(`${APP_URL}/${_id}`, {
       method: "DELETE",
       headers: {
-        Authorization: token,
+        Authorization: APP_TOKEN,
       },
     });
     if (!res.ok) {

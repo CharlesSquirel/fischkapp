@@ -1,19 +1,19 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent, waitFor, act, getAllByTestId } from "@testing-library/react";
+import { render, screen, fireEvent, } from "@testing-library/react";
 import NewCard from "../components/NewCard/NewCard";
 import { Context } from "../App";
-import { ContextProps, ICard, IFlashcard, initialCardText } from "../components/services/types/types";
+import { ContextProps, initialCardText } from "../components/services/types/types";
 import { AppHeader } from "../components/Header/AppHeader";
 import { AppLayout } from "../components/AppLayout";
 import CardList from "../components/CardList/CardList";
 import Card from "../components/Card/Card";
 import fetchMock from "jest-fetch-mock";
-import { deleteCard, getCards, token, url } from "../components/services/api/api";
+import { deleteCard, getCards, APP_TOKEN, APP_URL } from "../components/services/api/api";
 import { ReactNode } from "react";
 
 fetchMock.enableMocks();
 
-const flashCards = [
+const mockFlashCardsArray = [
   {
     _id: "0",
     _v: 0,
@@ -40,7 +40,7 @@ const flashCards = [
   },
 ];
 
-const flaschCardTest = {
+const mockFlaschCard = {
   _id: "123",
   _v: 1,
   back: "back",
@@ -49,19 +49,19 @@ const flaschCardTest = {
   createdAt: "test",
 };
 
-const contextTestValue: ContextProps = {
+const mockContextValue: ContextProps = {
   isNewCardshowed: false,
   setIsNewCardShowed: () => {},
   newCardTexts: initialCardText,
   setNewCardTexts: () => {},
-  flashCards: [flaschCardTest],
+  flashCards: [mockFlaschCard],
   setFlashCards: () => {},
   scrollContainerRef: null,
 };
 
 beforeEach(() => {
   render(
-    <Context.Provider value={contextTestValue}>
+    <Context.Provider value={mockContextValue}>
       <AppLayout>
         <AppHeader />
         <CardList>
@@ -72,43 +72,45 @@ beforeEach(() => {
   );
 });
 
-it("tests creating Card", () => {
-  render(<NewCard />);
-  const addBtn = screen.getByAltText("plus icon");
-  fireEvent.click(addBtn);
+describe("Card creation", () => {
+  it("tests creating Card", () => {
+    render(<NewCard />);
+    const addBtn = screen.getByAltText("plus icon");
+    fireEvent.click(addBtn);
 
-  const newCardComponent = screen.getByTestId("new-card");
-  expect(newCardComponent).toBeInTheDocument();
+    const newCardComponent = screen.getByTestId("new-card");
+    expect(newCardComponent).toBeInTheDocument();
 
-  const FrontCardValue = screen.getByRole("textbox") as HTMLTextAreaElement;
-  const nextBtn = screen.getByText("Next");
-  const { newCardTexts } = contextTestValue;
+    const FrontCardValue = screen.getByRole("textbox") as HTMLTextAreaElement;
+    const nextBtn = screen.getByText("Next");
+    const { newCardTexts } = mockContextValue;
 
-  if (FrontCardValue.value.length === 0) {
-    expect(nextBtn).toHaveAttribute("disabled", "");
-  } else {
-    expect(nextBtn).toHaveAttribute("disabled", newCardTexts.front);
-    fireEvent.click(nextBtn);
-
-    const backNewCardComponent = screen.getByTestId("back-new-card");
-    const frontNewCardComponent = screen.getByTestId("front-new-card");
-    expect(backNewCardComponent).toBeInTheDocument();
-    expect(frontNewCardComponent).not.toBeInTheDocument();
-
-    const saveBtn = screen.getByText("Save");
-    const BackCardValue = screen.getByRole("textbox") as HTMLTextAreaElement;
-
-    if (BackCardValue.value.length === 0) {
-      expect(saveBtn).toHaveAttribute("disabled", "");
+    if (FrontCardValue.value.length === 0) {
+      expect(nextBtn).toHaveAttribute("disabled", "");
     } else {
-      expect(saveBtn).toHaveAttribute("disabled", newCardTexts.back);
+      expect(nextBtn).toHaveAttribute("disabled", newCardTexts.front);
+      fireEvent.click(nextBtn);
+
+      const backNewCardComponent = screen.getByTestId("back-new-card");
+      const frontNewCardComponent = screen.getByTestId("front-new-card");
+      expect(backNewCardComponent).toBeInTheDocument();
+      expect(frontNewCardComponent).not.toBeInTheDocument();
+
+      const saveBtn = screen.getByText("Save");
+      const BackCardValue = screen.getByRole("textbox") as HTMLTextAreaElement;
+
+      if (BackCardValue.value.length === 0) {
+        expect(saveBtn).toHaveAttribute("disabled", "");
+      } else {
+        expect(saveBtn).toHaveAttribute("disabled", newCardTexts.back);
+      }
     }
-  }
+  });
 });
 
 describe("tests editing card", () => {
   beforeEach(() => {
-    render(<Card card={flaschCardTest} />);
+    render(<Card card={mockFlaschCard} />);
     const editBtn = screen.getByAltText("Button edit");
     const card = screen.getByTestId("card");
 
@@ -138,24 +140,26 @@ describe("tests editing card", () => {
   });
 });
 
-it("properly display cards", async () => {
-  render(
-    <CardList>
-      {flashCards.map((card, index: number): ReactNode => {
-        return <Card key={index} card={card} />;
-      })}
-    </CardList>
-  );
-  flashCards.forEach(({ front }) => {
-    const frontText = screen.getByText(front);
-    expect(frontText).toBeInTheDocument();
-  });
-  const cards = screen.getAllByTestId("card");
-  cards.forEach((card) => {
-    fireEvent.click(card);
-  });
-  flashCards.forEach(({ back }) => {
-    const backText = screen.getByText(back);
-    expect(backText).toBeInTheDocument();
+describe("Displaying cards", () => {
+  it("properly display cards", async () => {
+    render(
+      <CardList>
+        {mockFlashCardsArray.map((card, index: number): ReactNode => {
+          return <Card key={index} card={card} />;
+        })}
+      </CardList>
+    );
+    mockFlashCardsArray.forEach(({ front }) => {
+      const frontText = screen.getByText(front);
+      expect(frontText).toBeInTheDocument();
+    });
+    const cards = screen.getAllByTestId("card");
+    cards.forEach((card) => {
+      fireEvent.click(card);
+    });
+    mockFlashCardsArray.forEach(({ back }) => {
+      const backText = screen.getByText(back);
+      expect(backText).toBeInTheDocument();
+    });
   });
 });
