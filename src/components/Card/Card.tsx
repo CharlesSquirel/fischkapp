@@ -30,7 +30,7 @@ const Card: React.FC<ICard> = ({ card }) => {
       {isEditing ? (
         <CardEdit handleSwitchEdit={handleSwitchEdit} type={type} card={card} />
       ) : (
-        <article className={`${styles?.cardContainer} ${isAnimating ? styles.cardAnimation : styles.cardAnimationNone}`} onClick={handleCardRevert} data-testid="card">
+        <article className={`${styles?.cardContainer} ${isAnimating ? styles?.cardAnimation : styles?.cardAnimationNone}`} onClick={handleCardRevert} data-testid="card">
           <p className={styles?.cardText}>{type === CardTypes.front ? front : back}</p>
           <button className={globalStyles?.btnIcon} onClick={handleSwitchEdit}>
             <ButtonEdit />
