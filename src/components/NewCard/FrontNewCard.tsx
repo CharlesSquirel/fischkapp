@@ -19,7 +19,7 @@ const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
         <button className={globalStyles?.btnLight} onClick={handleCancel}>
           Cancel
         </button>
-        <button className={globalStyles?.btnDark} onClick={handleFlip} disabled={Boolean(!newCardTexts.front)}>
+        <button name="next" className={globalStyles?.btnDark} onClick={handleFlip} disabled={Boolean(!newCardTexts.front)}>
           Next
         </button>
       </div>

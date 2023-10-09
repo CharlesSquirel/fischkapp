@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 import { AppHeader } from "./components/Header/AppHeader";
 import { AppLayout } from "./components/AppLayout";
 import "./styles/App.scss";
@@ -25,12 +25,17 @@ function App() {
   const [flashCards, setFlashCards] = useState([]);
   const scrollContainerRef = useRef(null);
 
+  const getAllCards = async () => {
+    const cards = await getCards();
+    setFlashCards(cards);
+  };
+
   useEffect(() => {
-    getCards(setFlashCards);
+    getAllCards();
   }, []);
 
   return (
-    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef }}>
+    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef, getAllCards }}>
       <AppLayout>
         <AppHeader />
         <CardList>
