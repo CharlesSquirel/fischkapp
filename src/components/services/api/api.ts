@@ -21,7 +21,6 @@ export const addCard = async (card: CardTextsProps) => {
       throw new Error("Network response was not ok");
     }
     console.log("Card added successfully");
-    console.log("adding card");
   } catch (err) {
     console.error("There was a problem adding the card", err);
   }

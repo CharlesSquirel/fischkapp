@@ -1,15 +1,9 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent, waitFor, act, getAllByTestId } from "@testing-library/react";
-import NewCard from "../components/NewCard/NewCard";
-import App, { Context } from "../App";
-import { ContextProps, ICard, IFlashcard, initialCardText } from "../components/services/types/types";
-import { AppHeader } from "../components/Header/AppHeader";
-import { AppLayout } from "../components/AppLayout";
-import CardList from "../components/CardList/CardList";
-import Card from "../components/Card/Card";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import App from "../App";
+import { ContextProps, initialCardText } from "../components/services/types/types";
 import fetchMock from "jest-fetch-mock";
-import { addCard, deleteCard, getCards, token, url } from "../components/services/api/api";
-import { ReactNode } from "react";
+import { getCards } from "../components/services/api/api";
 
 fetchMock.enableMocks();
 jest.mock("../components/services/api/api");
@@ -17,20 +11,20 @@ const getCardsMocked = getCards as unknown as jest.Mock;
 
 const mockedCardArray = [
   {
-    _id: "0",
-    _v: 0,
-    back: "back0",
-    front: "front0",
-    uptadetAt: "test0",
-    createdAt: "test0",
-  },
-  {
     _id: "1",
     _v: 1,
     back: "back1",
     front: "front1",
     uptadetAt: "test1",
     createdAt: "test1",
+  },
+  {
+    _id: "2",
+    _v: 2,
+    back: "back2",
+    front: "front2",
+    uptadetAt: "test2",
+    createdAt: "test2",
   },
   {
     _id: "3",
@@ -51,22 +45,9 @@ const mockedCard = {
   createdAt: "test",
 };
 
-const contextTestValue: ContextProps = {
-  isNewCardshowed: false,
-  setIsNewCardShowed: () => {},
-  newCardTexts: initialCardText,
-  setNewCardTexts: () => {},
-  flashCards: mockedCardArray,
-  setFlashCards: () => {},
-  scrollContainerRef: null,
-};
-
-beforeEach(async () => {
+it("properly display cards", async () => {
   getCardsMocked.mockResolvedValue(mockedCardArray);
   render(<App />);
-});
-
-it("properly display cards", async () => {
   await waitFor(() => {
     const cardList = screen.getByTestId("card-list");
     expect(cardList.children).toHaveLength(mockedCardArray.length);
@@ -74,8 +55,9 @@ it("properly display cards", async () => {
 });
 
 it("tests creating Card", async () => {
-  screen.debug();
-  const addBtn = screen.getByRole("button");
+  getCardsMocked.mockResolvedValue(mockedCardArray);
+  render(<App />);
+  const addBtn = screen.getByAltText("plus icon");
   await waitFor(() => {
     fireEvent.click(addBtn);
   });
@@ -105,8 +87,6 @@ it("tests creating Card", async () => {
   });
   expect(backCardInput.value).toBe("");
   expect(saveBtn).toBeDisabled();
-  const { addCard } = require("../components/services/api/api");
-  const mockedAdd = jest.fn(addCard);
   await waitFor(() => {
     fireEvent.change(backCardInput, { target: { value: "back value" } });
     fireEvent.click(saveBtn);
@@ -114,60 +94,66 @@ it("tests creating Card", async () => {
   expect(newCardComponent).not.toBeInTheDocument();
 });
 
-it("test editing card", () => {
-  screen.debug();
+it("test editing card", async () => {
+  getCardsMocked.mockResolvedValue(mockedCardArray);
+  render(<App />);
+  await waitFor(() => {
+    const editBtn = screen.getAllByAltText("Button edit")[0];
+    fireEvent.click(editBtn);
+  });
+  const editCard = screen.getByTestId("edit-card");
+  expect(editCard).toBeInTheDocument();
+  const editInput = screen.getByRole("textbox") as HTMLTextAreaElement;
+  const saveBtn = screen.getByRole("button", {
+    name: /save/i,
+  });
+  expect(editInput.value).toEqual(mockedCardArray[0].front);
+  const newValue = mockedCardArray[0].front + "test";
+  await waitFor(() => {
+    fireEvent.change(editInput, { target: { value: "" } });
+    expect(saveBtn).toBeDisabled();
+    fireEvent.change(editInput, { target: { value: newValue } });
+    expect(editInput.value).toEqual(newValue);
+    fireEvent.click(saveBtn);
+    expect(editCard).not.toBeInTheDocument();
+  });
+  const frontCardInput = screen.getAllByTestId("card-text")[0] as HTMLTextAreaElement;
+  expect(frontCardInput).toBeInTheDocument();
+  // await waitFor(() => {
+  //   expect(frontCardInput).toEqual(newValue)
+  // })
 });
 
-// describe("tests editing card", () => {
-//   beforeEach(() => {
-//     render(<Card card={flaschCardTest} />);
-//     const editBtn = screen.getByAltText("Button edit");
-//     const card = screen.getByTestId("card");
+it("properly handle cancel button edit", async () => {
+  getCardsMocked.mockResolvedValue(mockedCardArray);
+  render(<App />);
+  await waitFor(() => {
+    const editBtn = screen.getAllByAltText("Button edit")[0];
+    fireEvent.click(editBtn);
+    const editCard = screen.getByTestId("edit-card");
+    expect(editCard).toBeInTheDocument();
+    const cancelBtn = screen.getByRole("button", {
+      name: /cancel/i,
+    });
+    fireEvent.click(cancelBtn);
+    expect(editCard).not.toBeInTheDocument();
+  });
+});
 
-//     fireEvent.click(editBtn);
+it("properly delete card", async () => {
+  getCardsMocked.mockResolvedValue(mockedCardArray);
+  render(<App />);
+  await waitFor(() => {
+    const editBtn = screen.getAllByAltText("Button edit")[0];
+    fireEvent.click(editBtn);
+    const editCard = screen.getByTestId("edit-card");
+    expect(editCard).toBeInTheDocument();
+  });
 
-//     const editCard = screen.getByTestId("edit-card");
-//     expect(editCard).toBeInTheDocument();
-//     expect(card).not.toBeInTheDocument();
-//   });
-
-//   it("properly handle save button", () => {
-//     const editInput = screen.getByRole("textbox") as HTMLTextAreaElement;
-//     const saveBtn = screen.getByText("Save");
-
-//     editInput.value.length === 0 ? expect(saveBtn).toHaveAttribute("disabled") : expect(saveBtn).not.toHaveAttribute("disabled");
-//   });
-//   it("properly handle cancel button", () => {
-//     const cancelBtn = screen.getByText("Cancel");
-//     const editCard = screen.getByTestId("edit-card");
-
-//     fireEvent.click(cancelBtn);
-
-//     expect(editCard).not.toBeInTheDocument();
-
-//     const card = screen.getByTestId("card");
-//     expect(card).toBeInTheDocument();
-//   });
-// });
-
-// it("properly display cards", async () => {
-//   render(
-//     <CardList>
-//       {flashCards.map((card, index: number): ReactNode => {
-//         return <Card key={index} card={card} />;
-//       })}
-//     </CardList>
-//   );
-//   flashCards.forEach(({ front }) => {
-//     const frontText = screen.getByText(front);
-//     expect(frontText).toBeInTheDocument();
-//   });
-//   const cards = screen.getAllByTestId("card");
-//   cards.forEach((card) => {
-//     fireEvent.click(card);
-//   });
-//   flashCards.forEach(({ back }) => {
-//     const backText = screen.getByText(back);
-//     expect(backText).toBeInTheDocument();
-//   });
-// });
+  const editCard = screen.getByTestId("edit-card");
+  const deleteBtn = screen.getByAltText("Button delete");
+  await waitFor(() => {
+    fireEvent.click(deleteBtn);
+    expect(editCard).not.toBeInTheDocument();
+  });
+});
