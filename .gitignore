@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-todo.todo
 coverage
+todo.todo
+

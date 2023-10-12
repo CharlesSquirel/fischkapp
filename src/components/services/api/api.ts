@@ -1,4 +1,4 @@
-import { CardTextsProps } from "../types/types";
+import { CardTextsProps, IFlashcard } from "../types/types";
 
 export const APP_URL = "https://training.nerdbord.io/api/v1/fischkapp/flashcards";
 export const APP_TOKEN = "secret_token";
@@ -26,10 +26,19 @@ export const addCard = async (card: CardTextsProps) => {
   }
 };
 
-export const getCards = async (settingFunction: React.Dispatch<React.SetStateAction<any>>) => {
-  const res = await fetch(APP_URL);
-  const data = await res.json();
-  settingFunction(data ? data : null);
+
+export const getCards = async () :Promise<IFlashcard[] | undefined> => {
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return data ;
+  } catch (err) {
+    console.log(err);
+  }
+
 };
 
 export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) => {

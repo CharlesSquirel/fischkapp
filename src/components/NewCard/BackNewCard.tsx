@@ -5,11 +5,11 @@ import InputCard from "../common/InputCard/InputCard";
 import ButtonDelete from "../common/ButtonsIcon/ButtonDelete/ButtonDelete";
 import { CardTypes, INewCard, InputTypes } from "../services/types/types";
 import { Context } from "../../App";
-import { addCard, getCards } from "../services/api/api";
+import { addCard } from "../services/api/api";
 
 const BackNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   const context = useContext(Context);
-  const { isNewCardshowed, setIsNewCardShowed, newCardTexts, setFlashCards } = context;
+  const { isNewCardshowed, setIsNewCardShowed, newCardTexts, getAllCards } = context;
 
   const handleDelete = () => {
     setIsNewCardShowed(!isNewCardshowed);
@@ -18,7 +18,9 @@ const BackNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   const handleSave = async () => {
     await addCard(newCardTexts);
     setIsNewCardShowed(!isNewCardshowed);
-    getCards(setFlashCards);
+    if (getAllCards) {
+      await getAllCards();
+    }
   };
 
   return (

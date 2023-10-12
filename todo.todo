@@ -9,6 +9,6 @@
 ☐ kolejność css na koniec
 ☐ nieużywane importy na koniec posprawdzać oraz komentarze
 ✔ textarea zablokowany w edit @high @done (23.09.2023, 20:43:45)
-✔ padding-bottom dla listy kart czy coś @done (1.10.2023, 12:19:24)
+☐ padding-bottom dla listy kart czy coś
 ✔ problem z dodawaniem karty - input @high @done (25.09.2023, 12:57:19)
-☐ po wprowadzeniu długiego stringa w nowej karcie nie zawija się on
+☐ back wartość nie pobiera się do edytowaniaa
