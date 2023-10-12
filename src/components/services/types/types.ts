@@ -70,7 +70,7 @@ export interface ContextProps {
   flashCards: IFlashcard[];
   setFlashCards: React.Dispatch<React.SetStateAction<any>>;
   scrollContainerRef: React.RefObject<HTMLDivElement> | null;
-  getAllCards?: () => {};
+  getAllCards: () => void;
 }
 
 export interface IFlashcard {

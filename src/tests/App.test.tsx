@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App";
-import { ContextProps, initialCardText } from "../components/services/types/types";
 import fetchMock from "jest-fetch-mock";
 import { getCards } from "../components/services/api/api";
 
@@ -119,9 +118,6 @@ it("test editing card", async () => {
   });
   const frontCardInput = screen.getAllByTestId("card-text")[0] as HTMLTextAreaElement;
   expect(frontCardInput).toBeInTheDocument();
-  // await waitFor(() => {
-  //   expect(frontCardInput).toEqual(newValue)
-  // })
 });
 
 it("properly handle cancel button edit", async () => {
