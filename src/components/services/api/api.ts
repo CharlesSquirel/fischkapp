@@ -29,7 +29,7 @@ export const addCard = async (card: CardTextsProps) => {
 
 export const getCards = async () :Promise<IFlashcard[] | undefined> => {
   try {
-    const res = await fetch(url);
+    const res = await fetch(APP_URL);
     const data = await res.json();
     if (!res.ok) {
       throw new Error("Network response was not ok");
