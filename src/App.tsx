@@ -21,7 +21,6 @@ export const Context = React.createContext<ContextProps>({
 });
 
 function App() {
-  // dummy pr
   const [isNewCardshowed, setIsNewCardShowed] = useState(false);
   const [newCardTexts, setNewCardTexts] = useState<CardTextsProps>(initialCardText);
   const [flashCards, setFlashCards] = useState<IFlashcard[]>([]);
