@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styles from "../../../styles/InputCard.module.scss";
 import { CardTypes, IInputCard, InputTypes } from "../../services/types/types";
 import { Context } from "../../../App";
@@ -44,6 +44,13 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
       }
     }
   };
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 840;
+    if (isMobile && textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, []);
 
   return (
     <textarea
