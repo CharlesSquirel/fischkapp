@@ -12,8 +12,8 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   const { getAllCards } = context;
 
   const [textToEdit, setTextToEdit] = useState<CardTextsProps>({
-    front: card?.front || "",
-    back: card?.back || "",
+    front: card.front || "",
+    back: card.back || "",
   });
 
   const handleSave = async () => {

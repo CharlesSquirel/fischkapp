@@ -26,19 +26,17 @@ export const addCard = async (card: CardTextsProps) => {
   }
 };
 
-
-export const getCards = async () :Promise<IFlashcard[] | undefined> => {
+export const getCards = async (): Promise<IFlashcard[] | undefined> => {
   try {
-    const res = await fetch(APP_URL);
+    const res = await fetch(`${APP_URL}?sort=createdAt&order=desc`);
     const data = await res.json();
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
-    return data ;
+    return data;
   } catch (err) {
     console.log(err);
   }
-
 };
 
 export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) => {
