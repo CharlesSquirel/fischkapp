@@ -5,3 +5,11 @@
   gap: 12px;
   padding: 12px 0 12px 0;
 }
+
+.emptyCardDescription {
+  align-self: flex-start;
+  margin-left: 16px;
+  color: var(--typo);
+  font-size: 16px;
+  line-height: 18px;
+}
