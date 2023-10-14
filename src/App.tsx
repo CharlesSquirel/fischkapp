@@ -1,13 +1,13 @@
 import * as React from "react";
-import "./styles/App.scss";
-import styles from "./styles/CardList.module.scss";
-import Card from "./components/Card/Card";
-import CardList from "./components/CardList/CardList";
-import NewCard from "./components/NewCard/NewCard";
 import { AppHeader } from "./components/Header/AppHeader";
 import { AppLayout } from "./components/AppLayout";
+import "./styles/App.scss";
+import styles from "./styles/CardList.module.scss";
+import CardList from "./components/CardList/CardList";
 import { ReactNode, useEffect, useRef, useState } from "react";
+import NewCard from "./components/NewCard/NewCard";
 import { CardTextsProps, ContextProps, IFlashcard, initialCardText } from "./components/services/types/types";
+import Card from "./components/Card/Card";
 import { getCards } from "./components/services/api/api";
 
 export const Context = React.createContext<ContextProps>({
@@ -45,9 +45,9 @@ function App() {
       <AppLayout>
         <AppHeader />
         <CardList>
-          {!isNewCardshowed && <p className={styles.emptyCardDescription}>Add your first flaschcard</p>}
+          {flashCards.length === 0 && !isNewCardshowed && <p className={styles.emptyCardDescription}>Add your first flashcard</p>}
           {isNewCardshowed && <NewCard />}
-          {flashCards.map((card, index): ReactNode => {
+          {flashCards.map((card, index: number): ReactNode => {
             return <Card key={index} card={card} />;
           })}
         </CardList>
