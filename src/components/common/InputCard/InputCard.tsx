@@ -20,7 +20,6 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
     adjustTextareaHeight();
   }, []);
 
-
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value;
     if (inputType === InputTypes.edit && setTextToEdit) {
@@ -57,6 +56,16 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
     }
   }, []);
 
+  let inputValue;
+  inputValue =
+    type === CardTypes.front && inputType === InputTypes.edit
+      ? textToEdit?.front
+      : type === CardTypes.back && inputType === InputTypes.edit
+      ? textToEdit?.back
+      : type === CardTypes.front && inputType === InputTypes.add
+      ? newCardTexts.front
+      : newCardTexts.back;
+
   return (
     <textarea
       id="text"
@@ -64,7 +73,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
       ref={textareaRef}
       onInput={adjustTextareaHeight}
       onChange={handleInputChange}
-      value={type === CardTypes.front ? textToEdit?.front : textToEdit?.back}
+      value={inputValue}
     ></textarea>
   );
 };
