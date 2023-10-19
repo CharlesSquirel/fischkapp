@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "../../../styles/InputCard.module.scss";
 import { CardTypes, IInputCard, InputTypes } from "../../services/types/types";
 import { Context } from "../../../App";
@@ -15,6 +15,10 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
       textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     }
   };
+
+  useEffect(() => {
+    adjustTextareaHeight();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value;
@@ -45,6 +49,23 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
     }
   };
 
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 840;
+    if (isMobile && textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, []);
+
+  let inputValue;
+  inputValue =
+    type === CardTypes.front && inputType === InputTypes.edit
+      ? textToEdit?.front
+      : type === CardTypes.back && inputType === InputTypes.edit
+      ? textToEdit?.back
+      : type === CardTypes.front && inputType === InputTypes.add
+      ? newCardTexts.front
+      : newCardTexts.back;
+
   return (
     <textarea
       id="text"
@@ -52,7 +73,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
       ref={textareaRef}
       onInput={adjustTextareaHeight}
       onChange={handleInputChange}
-      value={type === CardTypes.front ? textToEdit?.front : textToEdit?.back}
+      value={inputValue}
     ></textarea>
   );
 };

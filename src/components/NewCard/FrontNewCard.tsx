@@ -9,6 +9,7 @@ const FrontNewCard: React.FC<INewCard> = ({ handleFlip }) => {
   const context = useContext(Context);
   const { isNewCardshowed, setIsNewCardShowed, newCardTexts } = context;
 
+
   const handleCancel = () => {
     setIsNewCardShowed(!isNewCardshowed);
   };
