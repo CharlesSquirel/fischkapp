@@ -20,7 +20,7 @@ QA
 ✔ Kiedy edytuję kartę, input powinien się poszerzać, aby dostosować do ilości tekstu @done (17.10.2023, 13:40:01)
 ☐ Tekst na kartach powinien być wyśrodkowany
 ☐ Cień w headerze powinien być rzucany na karty, teraz jest pod nimi i tło headera miesza się z tłem kart
-☐ Nowa karta powinna się wyświetlać na górze
+✔ Nowa karta powinna się wyświetlać na górze @done (19.10.2023, 13:44:05)
 ☐ Kiedy edytuję tekst na karcie i klikam "save", jest taka sekunda przeskoku na tekście, jakby się podmieniał live, a nie powinno go być
 ☐ Dłuższe teksty się nie mieszczą na karcie, która powinna się rozszerzać, aby tekst był zawsze widoczny
 Mobile:
