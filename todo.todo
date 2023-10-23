@@ -15,12 +15,12 @@
 ☐ sprawdzic edytowanie karty
 
 QA
-✔ Przy dodawaniu karty, kiedy wpisuję tekst na drugiej stronie i wrócę - tekst z pierwszej strony jest niewidoczny na inpucie @done (19.10.2023, 11:12:06)
-✔ Jeśli karty są dodane, nie możemy mieć napisu "add your first card" podczas ładowania. Możemy dać napis informujący, że karty się ładują @done (19.10.2023, 11:15:25)
+✔ Przy dodawaniu karty, kiedy wpisuję tekst na drugiej stronie i wrócę - tekst z pierwszej strony jest niewidoczny na inpucie @done (23.10.2023, 13:09:02)
+✔ Jeśli karty są dodane, nie możemy mieć napisu "add your first card" podczas ładowania. Możemy dać napis informujący, że karty się ładują @done (23.10.2023, 13:09:05)
 ✔ Kiedy edytuję kartę, input powinien się poszerzać, aby dostosować do ilości tekstu @done (17.10.2023, 13:40:01)
-☐ Tekst na kartach powinien być wyśrodkowany
-☐ Cień w headerze powinien być rzucany na karty, teraz jest pod nimi i tło headera miesza się z tłem kart
-✔ Nowa karta powinna się wyświetlać na górze @done (19.10.2023, 13:44:05)
+✔ Tekst na kartach powinien być wyśrodkowany @done (23.10.2023, 13:08:47)
+✔ Cień w headerze powinien być rzucany na karty, teraz jest pod nimi i tło headera miesza się z tłem kart @done (23.10.2023, 13:12:48)
+✔ Nowa karta powinna się wyświetlać na górze @done (23.10.2023, 13:08:51)
 ☐ Kiedy edytuję tekst na karcie i klikam "save", jest taka sekunda przeskoku na tekście, jakby się podmieniał live, a nie powinno go być
 ☐ Dłuższe teksty się nie mieszczą na karcie, która powinna się rozszerzać, aby tekst był zawsze widoczny
 Mobile:
