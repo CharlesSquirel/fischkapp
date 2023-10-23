@@ -12,7 +12,7 @@
 ✔ padding-bottom dla listy kart czy coś @done (14.10.2023, 12:58:13)
 ✔ problem z dodawaniem karty - input @high @done (25.09.2023, 12:57:19)
 ✔ back wartość nie pobiera się do edytowaniaa @done (14.10.2023, 12:58:10)
-☐ sprawdzic edytowanie karty
+✔ sprawdzic edytowanie karty @done (23.10.2023, 15:43:15)
 
 QA
 ✔ Przy dodawaniu karty, kiedy wpisuję tekst na drugiej stronie i wrócę - tekst z pierwszej strony jest niewidoczny na inpucie @done (23.10.2023, 13:09:02)
@@ -21,8 +21,8 @@ QA
 ✔ Tekst na kartach powinien być wyśrodkowany @done (23.10.2023, 13:08:47)
 ✔ Cień w headerze powinien być rzucany na karty, teraz jest pod nimi i tło headera miesza się z tłem kart @done (23.10.2023, 13:12:48)
 ✔ Nowa karta powinna się wyświetlać na górze @done (23.10.2023, 13:08:51)
-☐ Kiedy edytuję tekst na karcie i klikam "save", jest taka sekunda przeskoku na tekście, jakby się podmieniał live, a nie powinno go być
-☐ Dłuższe teksty się nie mieszczą na karcie, która powinna się rozszerzać, aby tekst był zawsze widoczny
+✔ Kiedy edytuję tekst na karcie i klikam "save", jest taka sekunda przeskoku na tekście, jakby się podmieniał live, a nie powinno go być @done (23.10.2023, 13:17:10)
+✔ Dłuższe teksty się nie mieszczą na karcie, która powinna się rozszerzać, aby tekst był zawsze widoczny @done (23.10.2023, 16:11:31)
 Mobile:
 ✔ Po kliknięciu "edit" albo "+" klawiatura powinna być od razu wysunięta i input aktywny, aby od razu można było edytować @done (17.10.2023, 13:05:57)
-☐ Ostatnia karta jest obcięta, potrzebny dodatkowy spacing
+✔ Ostatnia karta jest obcięta, potrzebny dodatkowy spacing @done (23.10.2023, 15:43:12)

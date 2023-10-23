@@ -4,7 +4,7 @@
   @include cardContainer;
   position: relative;
   justify-content: center;
-  padding: 0 14px;
+  padding: 32px 14px;
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.13);
 }
 
@@ -19,7 +19,7 @@
 
 .cardAnimation {
   animation: flip-vertical-right 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
-  max-height: 188px;
+
   p,
   button {
     animation: flip-vertical-right-child 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;

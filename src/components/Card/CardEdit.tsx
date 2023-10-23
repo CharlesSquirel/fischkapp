@@ -18,8 +18,8 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
 
   const handleSave = async () => {
     await updateCard(card, textToEdit);
-    handleSwitchEdit();
     await getAllCards();
+    await handleSwitchEdit();
   };
 
   const handleDelete = async () => {
