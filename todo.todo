@@ -12,6 +12,7 @@
 ✔ padding-bottom dla listy kart czy coś @done (14.10.2023, 12:58:13)
 ✔ problem z dodawaniem karty - input @high @done (25.09.2023, 12:57:19)
 ✔ back wartość nie pobiera się do edytowaniaa @done (14.10.2023, 12:58:10)
+☐ sprawdzic edytowanie karty
 
 QA
 ✔ Przy dodawaniu karty, kiedy wpisuję tekst na drugiej stronie i wrócę - tekst z pierwszej strony jest niewidoczny na inpucie @done (23.10.2023, 13:09:02)

@@ -26,11 +26,31 @@ function App() {
   const [newCardTexts, setNewCardTexts] = useState<CardTextsProps>(initialCardText);
   const [flashCards, setFlashCards] = useState<IFlashcard[]>([]);
   const scrollContainerRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const createFormattedData = (cardData: string) => {
+    const date = cardData;
+    const day = date.slice(8, 10);
+    const month = date.slice(5, 7);
+    const year = date.slice(0, 4);
+    const hours = date.slice(11, 13);
+    const minutes = date.slice(14, 16);
+    const seconds = date.slice(17, 19);
+    const formattedData = year.concat(month, day, hours, minutes, seconds);
+    return formattedData;
+  };
+
+  const sortCards = (cards: IFlashcard[]) => {
+    cards.sort((a, b) => +createFormattedData(b.createdAt) - +createFormattedData(a.createdAt));
+  };
 
   const getAllCards = async () => {
     try {
+      setIsLoading(true);
       const cards = await getCards();
+      sortCards(cards ? cards : []);
       setFlashCards(cards ? cards : []);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -41,11 +61,13 @@ function App() {
   }, []);
 
   return (
-    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef, getAllCards }}>
+    <Context.Provider
+      value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef, getAllCards }}
+    >
       <AppLayout>
         <AppHeader />
         <CardList>
-          {flashCards.length === 0 && !isNewCardshowed && <p className={styles.emptyCardDescription}>Add your first flashcard</p>}
+          {flashCards.length === 0 && !isNewCardshowed && !isLoading && <p className={styles.emptyCardDescription}>Add your first flashcard</p>}
           {isNewCardshowed && <NewCard />}
           {flashCards.map((card, index: number): ReactNode => {
             return <Card key={index} card={card} />;
