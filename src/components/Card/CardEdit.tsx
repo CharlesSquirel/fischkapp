@@ -29,7 +29,7 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   };
 
   return (
-    <article className={styles?.cardContainer} data-testid="edit-card">
+    <article className={styles?.cardEditContainer} data-testid="edit-card">
       <InputCard textToEdit={textToEdit} setTextToEdit={setTextToEdit} type={type} inputType={InputTypes.edit} />
       <div className={globalStyles?.btnBox}>
         <button className={globalStyles?.btnLight} onClick={handleSwitchEdit}>

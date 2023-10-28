@@ -26,3 +26,9 @@ QA
 Mobile:
 ✔ Po kliknięciu "edit" albo "+" klawiatura powinna być od razu wysunięta i input aktywny, aby od razu można było edytować @done (17.10.2023, 13:05:57)
 ✔ Ostatnia karta jest obcięta, potrzebny dodatkowy spacing @done (23.10.2023, 15:43:12)
+
+QA2
+✔ Przy edycji kontentu mamy bardzo wąskie okno inputa, następnie jak przejdę do nowej linii i wrócę to się poprawia na dobrą wysokość @done (28.10.2023, 15:12:13)
+✔ Przycisku "cancel"/"save" są za wysoko, powinny mieć być umieszczone w tej samej odległości od każdej krawędzi, więc tutaj padding do poprawy @done (28.10.2023, 15:20:02)
+✔ Po kliknięciu "+" powinnam móc od razu wpisywać informacje w input z klawiatury bez konieczności klikania w input ponownie (tak jak jest na mobilce) @done (28.10.2023, 15:21:17)
+✔ Przy większej ilości tekstu też ikona "delete" nam się zrobiło tam ciasno mocno @done (28.10.2023, 15:24:41)
