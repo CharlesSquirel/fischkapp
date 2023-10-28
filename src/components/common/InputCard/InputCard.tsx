@@ -11,7 +11,6 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
 
   const adjustTextareaHeight = (): void => {
     if (textareaRef.current) {
-      textareaRef.current.style.minHeight = "40px";
       textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     }
   };
@@ -50,8 +49,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
   };
 
   useEffect(() => {
-    const isMobile = window.innerWidth <= 840;
-    if (isMobile && textareaRef.current) {
+    if (textareaRef.current) {
       textareaRef.current.focus();
     }
   }, []);
@@ -66,16 +64,7 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
       ? newCardTexts.front
       : newCardTexts.back;
 
-  return (
-    <textarea
-      id="text"
-      className={styles?.inputCard}
-      ref={textareaRef}
-      onInput={adjustTextareaHeight}
-      onChange={handleInputChange}
-      value={inputValue}
-    ></textarea>
-  );
+  return <textarea id="text" className={styles?.inputCard} ref={textareaRef} onInput={adjustTextareaHeight} onChange={handleInputChange} value={inputValue}></textarea>;
 };
 
 export default InputCard;

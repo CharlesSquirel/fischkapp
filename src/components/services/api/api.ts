@@ -57,13 +57,8 @@ export const updateCard = async (card: CardTextsProps, newCard: CardTextsProps) 
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
-    const responseJson = await res.json(); // Pobranie całej odpowiedzi jako obiekt JSON
-    const updatedCardData = responseJson.updatedFlashcard; // Wyodrębnienie zaktualizowanej karty
-    const updatedFront = updatedCardData.front;
-    const updatedBack = updatedCardData.back;
+    const responseJson = await res.json();
     console.log("Card edited successfully");
-    console.log("Updated front:", updatedFront);
-    console.log("Updated back:", responseJson);
   } catch (err) {
     console.error("There was a problem adding the card", err);
   }

@@ -4,8 +4,13 @@
   @include cardContainer;
   position: relative;
   justify-content: center;
-  padding: 32px 14px;
+  padding: 40px 20px;
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.13);
+}
+
+.cardEditContainer {
+  @extend .cardContainer;
+  padding: 50px 14px 14px 14px;
 }
 
 .cardText {

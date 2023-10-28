@@ -33,7 +33,6 @@ const Card: React.FC<ICard> = ({ card }) => {
       if (currentCardHeight > biggerHeight) {
         setBiggerHeight(currentCardHeight);
       }
-      console.log(biggerHeight);
     }
   };
 
