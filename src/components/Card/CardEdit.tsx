@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import styles from "../../styles/Card.module.scss";
 import ButtonDelete from "../common/ButtonsIcon/ButtonDelete/ButtonDelete";
 import InputCard from "../common/InputCard/InputCard";
@@ -9,7 +9,7 @@ import { deleteCard, updateCard } from "../services/api/api";
 
 const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   const context = useContext(Context);
-  const { getAllCards, newCardTexts, setNewCardTexts } = context;
+  const { getAllCards, setNewCardTexts } = context;
 
   const [textToEdit, setTextToEdit] = useState<CardTextsProps>({
     front: card.front || "",

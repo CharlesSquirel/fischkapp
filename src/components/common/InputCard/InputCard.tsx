@@ -5,7 +5,7 @@ import { Context } from "../../../App";
 
 const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inputType }) => {
   const context = useContext(Context);
-  const { newCardTexts, setNewCardTexts } = context;
+  const { newCardTexts, setNewCardTexts, setCardCurrentHeight } = context;
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -21,6 +21,9 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value;
+    if (inputType !== InputTypes.edit) {
+      setCardCurrentHeight(textareaRef.current ? textareaRef.current.clientHeight + 80 : 0);
+    }
     if (inputType === InputTypes.edit && setTextToEdit) {
       if (type === CardTypes.front) {
         setTextToEdit({

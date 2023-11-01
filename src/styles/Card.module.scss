@@ -42,14 +42,20 @@
 @keyframes flip-vertical-right {
   0% {
     width: 343px;
+    height: 0;
   }
   50% {
     width: 0%;
     opacity: 0;
   }
+  99% {
+    height: 0;
+  }
+
   100% {
     width: 343px;
     opacity: 1;
+    height: 100%;
   }
 }
 

@@ -19,6 +19,8 @@ export const Context = React.createContext<ContextProps>({
   setFlashCards: () => {},
   scrollContainerRef: null,
   getAllCards: () => {},
+  cardCurrentHeight: 0,
+  setCardCurrentHeight: () => {},
 });
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
   const [flashCards, setFlashCards] = useState<IFlashcard[]>([]);
   const scrollContainerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [cardCurrentHeight, setCardCurrentHeight] = useState(0);
 
   const createFormattedData = (cardData: string) => {
     const date = cardData;
@@ -62,7 +65,7 @@ function App() {
 
   return (
     <Context.Provider
-      value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef, getAllCards }}
+      value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef, getAllCards, cardCurrentHeight, setCardCurrentHeight }}
     >
       <AppLayout>
         <AppHeader />

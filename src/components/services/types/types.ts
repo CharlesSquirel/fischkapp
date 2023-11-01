@@ -71,6 +71,8 @@ export interface ContextProps {
   setFlashCards: React.Dispatch<React.SetStateAction<any>>;
   scrollContainerRef: React.RefObject<HTMLDivElement> | null;
   getAllCards: () => void;
+  setCardCurrentHeight: React.Dispatch<React.SetStateAction<number>>;
+  cardCurrentHeight: number;
 }
 
 export interface IFlashcard {
