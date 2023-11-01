@@ -4,12 +4,12 @@ import ButtonDelete from "../common/ButtonsIcon/ButtonDelete/ButtonDelete";
 import InputCard from "../common/InputCard/InputCard";
 import globalStyles from "../../styles/GlobalClaasses.module.scss";
 import { Context } from "../../App";
-import { CardTextsProps, ICardEdit, InputTypes } from "../services/types/types";
+import { CardTextsProps, ICardEdit, InputTypes, initialCardText } from "../services/types/types";
 import { deleteCard, updateCard } from "../services/api/api";
 
 const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
   const context = useContext(Context);
-  const { getAllCards } = context;
+  const { getAllCards, newCardTexts, setNewCardTexts } = context;
 
   const [textToEdit, setTextToEdit] = useState<CardTextsProps>({
     front: card.front || "",
@@ -26,6 +26,7 @@ const CardEdit: React.FC<ICardEdit> = ({ handleSwitchEdit, type, card }) => {
     await deleteCard(card);
     handleSwitchEdit();
     await getAllCards();
+    setNewCardTexts(initialCardText);
   };
 
   return (

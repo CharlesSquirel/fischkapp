@@ -35,4 +35,4 @@ QA2
 
 QA3
 ☐ Kiedy dodaję kartę i dużo tekstu, usuwam, a potem znów chcę dodać kartę, to wysokość inputa mi się nie dostosowuje do ilości tekstu i zostaję z bardzo wysokim text area.
-☐ Na mobilce przy edytowaniu - kursor powinien być na samym końcu, nie na początku słowa.
+✔ Na mobilce przy edytowaniu - kursor powinien być na samym końcu, nie na początku słowa. @done (1.11.2023, 18:11:18)
