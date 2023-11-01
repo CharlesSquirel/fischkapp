@@ -49,8 +49,13 @@ const InputCard: React.FC<IInputCard> = ({ type, textToEdit, setTextToEdit, inpu
   };
 
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.focus();
+    const isMobile = window.innerWidth < 700;
+    const textArea = textareaRef.current;
+    if (textArea) {
+      textArea.focus();
+      if (isMobile) {
+        textArea.setSelectionRange(textArea.value.length, textArea.value.length);
+      }
     }
   }, []);
 
