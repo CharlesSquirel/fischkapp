@@ -9,7 +9,6 @@ import { Context } from "../../App";
 const Card: React.FC<ICard> = ({ card }) => {
   const context = useContext(Context);
   const { cardCurrentHeight } = context;
-  console.log(cardCurrentHeight);
 
   const [type, setType] = useState(CardTypes.front);
   const [isEditing, setIsEditing] = useState(false);
