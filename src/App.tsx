@@ -9,6 +9,7 @@ import NewCard from "./components/NewCard/NewCard";
 import { CardTextsProps, ContextProps, IFlashcard, initialCardText } from "./components/services/types/types";
 import Card from "./components/Card/Card";
 import { getCards } from "./components/services/api/api";
+// dummy PR
 
 export const Context = React.createContext<ContextProps>({
   isNewCardshowed: false,
@@ -61,9 +62,7 @@ function App() {
   }, []);
 
   return (
-    <Context.Provider
-      value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef, getAllCards }}
-    >
+    <Context.Provider value={{ isNewCardshowed, setIsNewCardShowed, newCardTexts, setNewCardTexts, flashCards, setFlashCards, scrollContainerRef, getAllCards }}>
       <AppLayout>
         <AppHeader />
         <CardList>
